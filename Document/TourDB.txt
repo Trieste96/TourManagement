@@ -1,0 +1,14 @@
+Tour(MaTour, TenTour, DacDiem, Gia, MaLoaiHinh), LoaiHinh(MaLoaiHinh, TenLoaiHinh)
+DiaDiem(MaDiaDiem, TenDiaDiem, MaTinh), Tinh(MaTinh, TenTinh)
+DiaDiemTour(MaTour, MaDiaDiem, Ngay, Gio)
+
+ThongTinDoan(MaDoan, TenDoan, NgayKhoiHanh, NgayKetThuc, ChiTietND, MaTour)
+KhachDuLich(MaKhach, HoTen, CMND, DiaChi, GioiTinh, SDT)
+NhanVien(MaNhanVien, HoTen)
+ThanhVienDoan(MaDoan, MaKhach)
+NhanVienDoan(MaDoan, MaNhanVien, NhiemVu)
+
+ChiPhi(MaChiPhi, TenChiPhi)
+
+ChiPhiTour(MaTour, MaChiPhi, ChiPhiUocTinh)
+ChiPhiDoan(MaDoan, MaChiPhi, ChiPhiThucTe)
