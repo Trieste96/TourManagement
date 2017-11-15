@@ -1,14 +1,15 @@
-Tour(ID, MaTour, TenTour, DacDiem, Gia, LoaiHinh.ID), LoaiHinh(ID, TenLoaiHinh)
-DiaDiem(ID, TenDiaDiem, Tinh.ID), Tinh(ID, TenTinh)
+Tour(ID, MaTour, TenTour, DacDiem, Gia, LoaiHinh.ID), 
+LoaiHinh(ID, TenLoaiHinh),
+DiaDiem(ID, TenDiaDiem, Tinh.ID), 
+Tinh(ID, TenTinh),
 DiaDiemTour(Tour.ID, DiaDiem.ID, Ngay, Gio)
 
-ThongTinDoan(ID, MaDoan, TenDoan, NgayKhoiHanh, NgayKetThuc, ChiTietND, Tour.ID)
+ThongTinDoan(ID, MaDoan, TenDoan, NgayKhoiHanh, NgayKetThuc, ChiTietND, Tour.ID, GiaTour)
 KhachDuLich(ID, MaKhach, HoTen, CMND, DiaChi, GioiTinh, SDT)
 NhanVien(ID, MaNhanVien, HoTen)
-ThanhVienDoan(ID, Doan.ID, Khach.ID)
+ThanhVienDoan(ID, Doan.ID, Khach.ID, TyLeTraLai)
 NhanVienDoan(ID,  Doan.ID, NhanVien.ID, NhiemVu)
 
-ChiPhi(ID, TenChiPhi)
-
-ChiPhiTour(Tour.ID, ChiPhi.ID, ChiPhiUocTinh, GhiChu)
-ChiPhiDoan(Doan.ID, ChiPhi.ID, ChiPhiThucTe, GhiChu)
+ChiPhiTour(Tour.ID, TenChiPhi, ChiPhiUocTinh, LoaiChiPhi.ID, GhiChu)
+ChiPhiDoan(Doan.ID, TenChiPhi, ChiPhiThucTe, SoLuong, Tong, LoaiChiPhi.ID, GhiChu)
+LoaiChiPhi(ID, TenLoaiCP)
