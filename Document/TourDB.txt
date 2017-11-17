@@ -1,7 +1,8 @@
-Tour(ID, MaTour, TenTour, DacDiem, GiaHienTai, LoaiHinh.ID), 
+Tour(ID, MaTour, TenTour, DacDiem, Gia, LoaiHinh.ID), 
 LoaiHinh(ID, TenLoaiHinh),
-DiaDiemTour(Tour.ID, TenDiaDiem, Tinh.ID, NgayThamQuan), 
+DiaDiem(ID, TenDiaDiem, Tinh.ID), 
 Tinh(ID, TenTinh),
+DiaDiemTour(Tour.ID, DiaDiem.ID, Ngay, Gio)
 
 ThongTinDoan(ID, MaDoan, TenDoan, NgayKhoiHanh, NgayKetThuc, ChiTietND, Tour.ID, GiaTour)
 KhachDuLich(ID, MaKhach, HoTen, CMND, DiaChi, GioiTinh, SDT)
