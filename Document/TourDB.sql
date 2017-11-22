@@ -13,6 +13,8 @@ insert into LoaiHinh values(N'Du lịch di động')
 insert into LoaiHinh values(N'Du lịch kết hợp nghề nghiệp')
 insert into LoaiHinh values(N'Du lịch xã hội')
 insert into LoaiHinh values(N'Du lịch gia đình')
+insert into LoaiHinh values(N'Khác')
+
 
 CREATE TABLE Tinh
 (
@@ -63,6 +65,7 @@ insert into LoaiChiPhi values(N'Khách sạn')
 insert into LoaiChiPhi values(N'Ăn uống')
 insert into LoaiChiPhi values(N'Đi lại')
 insert into LoaiChiPhi values(N'Vé')
+insert into LoaiChiPhi values(N'Khác')
 
 CREATE TABLE NhiemVu
 (
@@ -75,6 +78,7 @@ insert into NhiemVu values(N'Hướng dẫn viên')
 insert into NhiemVu values(N'Phục vụ')
 insert into NhiemVu values(N'Thông dịch viên')
 insert into NhiemVu values(N'Tiền trạm')
+insert into NhiemVu values(N'Khác')
 
 CREATE TABLE Tour
 (
