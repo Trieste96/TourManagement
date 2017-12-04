@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TourDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TourDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiPhiDoan">
           <Key>
             <PropertyRef Name="ID" />
@@ -344,10 +344,10 @@ warning 6002: The table/view 'TourDB.dbo.DiaDiemTour' does not have a primary ke
           <EntitySet Name="ThanhVienDoan" EntityType="Self.ThanhVienDoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiaDiemTour" EntityType="Self.DiaDiemTour" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [DiaDiemTour].[Ngay] AS [Ngay], 
-    [DiaDiemTour].[TourID] AS [TourID], 
-    [DiaDiemTour].[DiaDiemID] AS [DiaDiemID]
-    FROM [dbo].[DiaDiemTour] AS [DiaDiemTour]</DefiningQuery>
+[DiaDiemTour].[Ngay] AS [Ngay], 
+[DiaDiemTour].[TourID] AS [TourID], 
+[DiaDiemTour].[DiaDiemID] AS [DiaDiemID]
+FROM [dbo].[DiaDiemTour] AS [DiaDiemTour]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__ChiPhiDoa__DoanI__4E88ABD4" Association="Self.FK__ChiPhiDoa__DoanI__4E88ABD4">
             <End Role="DoanDuLich" EntitySet="DoanDuLich" />
@@ -765,7 +765,7 @@ warning 6002: The table/view 'TourDB.dbo.DiaDiemTour' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TourDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TourDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiPhiDoans" EntityType="Self.ChiPhiDoan" />
           <EntitySet Name="ChiPhiTours" EntityType="Self.ChiPhiTour" />
           <EntitySet Name="DiaDiems" EntityType="Self.DiaDiem" />
@@ -847,7 +847,7 @@ warning 6002: The table/view 'TourDB.dbo.DiaDiemTour' does not have a primary ke
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TourDBModelStoreContainer" CdmEntityContainer="TourDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="TourDBModelStoreContainer" CdmEntityContainer="TourDBEntities">
           <EntitySetMapping Name="ChiPhiDoans">
             <EntityTypeMapping TypeName="TourDBModel.ChiPhiDoan">
               <MappingFragment StoreEntitySet="ChiPhiDoan">
@@ -1017,7 +1017,7 @@ warning 6002: The table/view 'TourDB.dbo.DiaDiemTour' does not have a primary ke
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

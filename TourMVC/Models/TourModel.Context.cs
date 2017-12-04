@@ -13,10 +13,10 @@ namespace TourMVC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TourDBEntities : DbContext
+    public partial class TourDBEntities1 : DbContext
     {
-        public TourDBEntities()
-            : base("name=TourDBEntities")
+        public TourDBEntities1()
+            : base("name=TourDBEntities1")
         {
         }
     
@@ -25,20 +25,20 @@ namespace TourMVC.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ChiPhiDoan> ChiPhiDoan { get; set; }
-        public virtual DbSet<ChiPhiTour> ChiPhiTour { get; set; }
-        public virtual DbSet<DiaDiem> DiaDiem { get; set; }
-        public virtual DbSet<DoanDuLich> DoanDuLich { get; set; }
-        public virtual DbSet<KhachDuLich> KhachDuLich { get; set; }
-        public virtual DbSet<LoaiChiPhi> LoaiChiPhi { get; set; }
-        public virtual DbSet<LoaiHinh> LoaiHinh { get; set; }
-        public virtual DbSet<NhanVien> NhanVien { get; set; }
-        public virtual DbSet<NhanVienDoan> NhanVienDoan { get; set; }
-        public virtual DbSet<NhiemVu> NhiemVu { get; set; }
-        public virtual DbSet<ThanhVienDoan> ThanhVienDoan { get; set; }
-        public virtual DbSet<Tinh> Tinh { get; set; }
-        public virtual DbSet<TinhTrangDoan> TinhTrangDoan { get; set; }
-        public virtual DbSet<Tour> Tour { get; set; }
-        public virtual DbSet<DiaDiemTour> DiaDiemTour { get; set; }
+        public virtual DbSet<ChiPhiDoan> ChiPhiDoans { get; set; }
+        public virtual DbSet<ChiPhiTour> ChiPhiTours { get; set; }
+        public virtual DbSet<DiaDiem> DiaDiems { get; set; }
+        public virtual DbSet<DoanDuLich> DoanDuLiches { get; set; }
+        public virtual DbSet<KhachDuLich> KhachDuLiches { get; set; }
+        public virtual DbSet<LoaiChiPhi> LoaiChiPhis { get; set; }
+        public virtual DbSet<LoaiHinh> LoaiHinhs { get; set; }
+        public virtual DbSet<NhanVien> NhanViens { get; set; }
+        public virtual DbSet<NhanVienDoan> NhanVienDoans { get; set; }
+        public virtual DbSet<NhiemVu> NhiemVus { get; set; }
+        public virtual DbSet<Tinh> Tinhs { get; set; }
+        public virtual DbSet<TinhTrangDoan> TinhTrangDoans { get; set; }
+        public virtual DbSet<Tour> Tours { get; set; }
+        public virtual DbSet<ThanhVienDoan> ThanhVienDoans { get; set; }
+        public virtual DbSet<DiaDiemTour> DiaDiemTours { get; set; }
     }
 }
