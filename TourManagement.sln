@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourMVC", "TourMVC\TourMVC.csproj", "{0B3A17C2-3724-459C-BE83-586339601BF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourApplication", "TourApplication\TourApplication.csproj", "{661C0E11-F4D6-469A-955C-62EB15AE0EB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourModel", "TourModel\TourModel.csproj", "{E1A237EC-DFAF-492B-88EC-F8C716B99657}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{661C0E11-F4D6-469A-955C-62EB15AE0EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{661C0E11-F4D6-469A-955C-62EB15AE0EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{661C0E11-F4D6-469A-955C-62EB15AE0EB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1A237EC-DFAF-492B-88EC-F8C716B99657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1A237EC-DFAF-492B-88EC-F8C716B99657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1A237EC-DFAF-492B-88EC-F8C716B99657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1A237EC-DFAF-492B-88EC-F8C716B99657}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C28061D-F6F4-4E70-A868-F6EF387C49D8}
 	EndGlobalSection
 EndGlobal
