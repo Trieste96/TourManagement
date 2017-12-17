@@ -52,6 +52,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -104,6 +105,10 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="TourModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TourModel\bin\Debug\TourModel.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -170,76 +175,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KhachDuLichesController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ChiPhiDoan.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ChiPhiTour.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DiaDiem.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DiaDiemTour.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DoanDuLich.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\KhachDuLich.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoaiChiPhi.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoaiHinh.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\NhanVien.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NhanVienDoan.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NhiemVu.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ThanhVienDoan.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Tinh.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TinhTrangDoan.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Tour.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TourModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TourModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TourModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TourModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TourModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -250,25 +193,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\TourModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TourModel.edmx</DependentUpon>
-      <LastGenOutput>TourModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\TourModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TourModel.edmx</DependentUpon>
-      <LastGenOutput>TourModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\TourModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TourModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TourModel.edmx.diagram">
-      <DependentUpon>TourModel.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -281,7 +207,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -295,31 +223,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\KhachDuLiches\Create.cshtml" />
-    <Content Include="Views\KhachDuLiches\Delete.cshtml" />
-    <Content Include="Views\KhachDuLiches\Details.cshtml" />
-    <Content Include="Views\KhachDuLiches\Edit.cshtml" />
-    <Content Include="Views\KhachDuLiches\Index.cshtml" />
+    <Content Include="Views\ThongKe\SoDoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -334,6 +240,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

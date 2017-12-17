@@ -111,13 +111,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="TourModel.edmx">
+    <Content Include="TourModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TourModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="TourModel.edmx.diagram">
       <DependentUpon>TourModel.edmx</DependentUpon>
