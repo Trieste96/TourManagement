@@ -55,10 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\DiaDiemThamQuan.cs" />
-    <Compile Include="DAL\NhanVienLamViec.cs" />
-    <Compile Include="DAL\ThongTinTour.cs" />
-    <Compile Include="DAL\TinhThamQuan.cs" />
     <Compile Include="GUI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,16 +98,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BUS\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TourModel\TourModel.csproj">
-      <Project>{e1a237ec-dfaf-492b-88ec-f8c716b99657}</Project>
-      <Name>TourModel</Name>
+    <ProjectReference Include="..\TourCommon\TourCommon.csproj">
+      <Project>{7311474e-715a-43ec-9479-6e131dc83734}</Project>
+      <Name>TourCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

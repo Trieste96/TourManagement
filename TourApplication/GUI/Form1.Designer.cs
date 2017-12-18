@@ -34,14 +34,14 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dtgvThongTinTour = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnXoaTour = new System.Windows.Forms.Button();
+            this.btnSuaTour = new System.Windows.Forms.Button();
             this.btnThemTtTour = new System.Windows.Forms.Button();
             this.cbLoaiHinhID = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtGia = new System.Windows.Forms.TextBox();
+            this.txtDacDiem = new System.Windows.Forms.TextBox();
+            this.txtTenTour = new System.Windows.Forms.TextBox();
+            this.txtMaTour = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -73,12 +73,12 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.btnXoaCtTour = new System.Windows.Forms.Button();
+            this.btnSuaCtTour = new System.Windows.Forms.Button();
+            this.btnThemCtTour = new System.Windows.Forms.Button();
+            this.dtpNgay = new System.Windows.Forms.DateTimePicker();
+            this.cbDiaDiemID = new System.Windows.Forms.ComboBox();
+            this.cbTourID = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -209,19 +209,22 @@
             this.dtgvThongTinTour.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvThongTinTour.Location = new System.Drawing.Point(7, 203);
             this.dtgvThongTinTour.Name = "dtgvThongTinTour";
+            this.dtgvThongTinTour.ReadOnly = true;
+            this.dtgvThongTinTour.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvThongTinTour.Size = new System.Drawing.Size(620, 244);
             this.dtgvThongTinTour.TabIndex = 2;
+            this.dtgvThongTinTour.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvThongTinTour_CellContentClick);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Controls.Add(this.button5);
+            this.groupBox2.Controls.Add(this.btnXoaTour);
+            this.groupBox2.Controls.Add(this.btnSuaTour);
             this.groupBox2.Controls.Add(this.btnThemTtTour);
             this.groupBox2.Controls.Add(this.cbLoaiHinhID);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.textBox5);
-            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this.txtGia);
+            this.groupBox2.Controls.Add(this.txtDacDiem);
+            this.groupBox2.Controls.Add(this.txtTenTour);
+            this.groupBox2.Controls.Add(this.txtMaTour);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
@@ -235,23 +238,25 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
-            // button6
+            // btnXoaTour
             // 
-            this.button6.Location = new System.Drawing.Point(488, 126);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 14;
-            this.button6.Text = "Xóa";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnXoaTour.Location = new System.Drawing.Point(488, 126);
+            this.btnXoaTour.Name = "btnXoaTour";
+            this.btnXoaTour.Size = new System.Drawing.Size(75, 23);
+            this.btnXoaTour.TabIndex = 14;
+            this.btnXoaTour.Text = "Xóa";
+            this.btnXoaTour.UseVisualStyleBackColor = true;
+            this.btnXoaTour.Click += new System.EventHandler(this.btnXoaTour_Click);
             // 
-            // button5
+            // btnSuaTour
             // 
-            this.button5.Location = new System.Drawing.Point(394, 126);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 13;
-            this.button5.Text = "Sửa";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnSuaTour.Location = new System.Drawing.Point(394, 126);
+            this.btnSuaTour.Name = "btnSuaTour";
+            this.btnSuaTour.Size = new System.Drawing.Size(75, 23);
+            this.btnSuaTour.TabIndex = 13;
+            this.btnSuaTour.Text = "Sửa";
+            this.btnSuaTour.UseVisualStyleBackColor = true;
+            this.btnSuaTour.Click += new System.EventHandler(this.button5_Click);
             // 
             // btnThemTtTour
             // 
@@ -271,34 +276,34 @@
             this.cbLoaiHinhID.Size = new System.Drawing.Size(121, 21);
             this.cbLoaiHinhID.TabIndex = 11;
             // 
-            // textBox4
+            // txtGia
             // 
-            this.textBox4.Location = new System.Drawing.Point(348, 41);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(215, 20);
-            this.textBox4.TabIndex = 10;
+            this.txtGia.Location = new System.Drawing.Point(348, 41);
+            this.txtGia.Name = "txtGia";
+            this.txtGia.Size = new System.Drawing.Size(215, 20);
+            this.txtGia.TabIndex = 10;
             // 
-            // textBox3
+            // txtDacDiem
             // 
-            this.textBox3.Location = new System.Drawing.Point(60, 91);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(215, 82);
-            this.textBox3.TabIndex = 9;
+            this.txtDacDiem.Location = new System.Drawing.Point(60, 91);
+            this.txtDacDiem.Multiline = true;
+            this.txtDacDiem.Name = "txtDacDiem";
+            this.txtDacDiem.Size = new System.Drawing.Size(215, 82);
+            this.txtDacDiem.TabIndex = 9;
             // 
-            // textBox5
+            // txtTenTour
             // 
-            this.textBox5.Location = new System.Drawing.Point(60, 67);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(215, 20);
-            this.textBox5.TabIndex = 8;
+            this.txtTenTour.Location = new System.Drawing.Point(60, 67);
+            this.txtTenTour.Name = "txtTenTour";
+            this.txtTenTour.Size = new System.Drawing.Size(215, 20);
+            this.txtTenTour.TabIndex = 8;
             // 
-            // textBox6
+            // txtMaTour
             // 
-            this.textBox6.Location = new System.Drawing.Point(60, 44);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(215, 20);
-            this.textBox6.TabIndex = 7;
+            this.txtMaTour.Location = new System.Drawing.Point(60, 44);
+            this.txtMaTour.Name = "txtMaTour";
+            this.txtMaTour.Size = new System.Drawing.Size(215, 20);
+            this.txtMaTour.TabIndex = 7;
             // 
             // label7
             // 
@@ -341,9 +346,8 @@
             this.lbIDTour.AutoSize = true;
             this.lbIDTour.Location = new System.Drawing.Point(57, 20);
             this.lbIDTour.Name = "lbIDTour";
-            this.lbIDTour.Size = new System.Drawing.Size(35, 13);
+            this.lbIDTour.Size = new System.Drawing.Size(0, 13);
             this.lbIDTour.TabIndex = 2;
-            this.lbIDTour.Text = "label8";
             this.lbIDTour.Visible = false;
             // 
             // label9
@@ -599,12 +603,12 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.button15);
-            this.groupBox5.Controls.Add(this.button14);
-            this.groupBox5.Controls.Add(this.button13);
-            this.groupBox5.Controls.Add(this.dateTimePicker1);
-            this.groupBox5.Controls.Add(this.comboBox4);
-            this.groupBox5.Controls.Add(this.comboBox3);
+            this.groupBox5.Controls.Add(this.btnXoaCtTour);
+            this.groupBox5.Controls.Add(this.btnSuaCtTour);
+            this.groupBox5.Controls.Add(this.btnThemCtTour);
+            this.groupBox5.Controls.Add(this.dtpNgay);
+            this.groupBox5.Controls.Add(this.cbDiaDiemID);
+            this.groupBox5.Controls.Add(this.cbTourID);
             this.groupBox5.Controls.Add(this.label18);
             this.groupBox5.Controls.Add(this.label17);
             this.groupBox5.Controls.Add(this.label16);
@@ -615,55 +619,56 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "groupBox5";
             // 
-            // button15
+            // btnXoaCtTour
             // 
-            this.button15.Location = new System.Drawing.Point(376, 79);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
-            this.button15.TabIndex = 8;
-            this.button15.Text = "Xóa";
-            this.button15.UseVisualStyleBackColor = true;
+            this.btnXoaCtTour.Location = new System.Drawing.Point(376, 79);
+            this.btnXoaCtTour.Name = "btnXoaCtTour";
+            this.btnXoaCtTour.Size = new System.Drawing.Size(75, 23);
+            this.btnXoaCtTour.TabIndex = 8;
+            this.btnXoaCtTour.Text = "Xóa";
+            this.btnXoaCtTour.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // btnSuaCtTour
             // 
-            this.button14.Location = new System.Drawing.Point(376, 50);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
-            this.button14.TabIndex = 7;
-            this.button14.Text = "Sửa";
-            this.button14.UseVisualStyleBackColor = true;
+            this.btnSuaCtTour.Location = new System.Drawing.Point(376, 50);
+            this.btnSuaCtTour.Name = "btnSuaCtTour";
+            this.btnSuaCtTour.Size = new System.Drawing.Size(75, 23);
+            this.btnSuaCtTour.TabIndex = 7;
+            this.btnSuaCtTour.Text = "Sửa";
+            this.btnSuaCtTour.UseVisualStyleBackColor = true;
             // 
-            // button13
+            // btnThemCtTour
             // 
-            this.button13.Location = new System.Drawing.Point(376, 20);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 6;
-            this.button13.Text = "Thêm";
-            this.button13.UseVisualStyleBackColor = true;
+            this.btnThemCtTour.Location = new System.Drawing.Point(376, 20);
+            this.btnThemCtTour.Name = "btnThemCtTour";
+            this.btnThemCtTour.Size = new System.Drawing.Size(75, 23);
+            this.btnThemCtTour.TabIndex = 6;
+            this.btnThemCtTour.Text = "Thêm";
+            this.btnThemCtTour.UseVisualStyleBackColor = true;
+            this.btnThemCtTour.Click += new System.EventHandler(this.btnThemCtTour_Click);
             // 
-            // dateTimePicker1
+            // dtpNgay
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(78, 20);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 5;
+            this.dtpNgay.Location = new System.Drawing.Point(78, 20);
+            this.dtpNgay.Name = "dtpNgay";
+            this.dtpNgay.Size = new System.Drawing.Size(200, 20);
+            this.dtpNgay.TabIndex = 5;
             // 
-            // comboBox4
+            // cbDiaDiemID
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(78, 76);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 4;
+            this.cbDiaDiemID.FormattingEnabled = true;
+            this.cbDiaDiemID.Location = new System.Drawing.Point(78, 76);
+            this.cbDiaDiemID.Name = "cbDiaDiemID";
+            this.cbDiaDiemID.Size = new System.Drawing.Size(121, 21);
+            this.cbDiaDiemID.TabIndex = 4;
             // 
-            // comboBox3
+            // cbTourID
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(78, 45);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 3;
+            this.cbTourID.FormattingEnabled = true;
+            this.cbTourID.Location = new System.Drawing.Point(78, 45);
+            this.cbTourID.Name = "cbTourID";
+            this.cbTourID.Size = new System.Drawing.Size(121, 21);
+            this.cbTourID.TabIndex = 3;
             // 
             // label18
             // 
@@ -1065,7 +1070,6 @@
             this.dtgvNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvNhanVien.Size = new System.Drawing.Size(688, 314);
             this.dtgvNhanVien.TabIndex = 1;
-            this.dtgvNhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvNhanVien_CellContentClick);
             // 
             // groupBox1
             // 
@@ -1101,7 +1105,6 @@
             this.btnXoaNv.TabIndex = 7;
             this.btnXoaNv.Text = "Xóa";
             this.btnXoaNv.UseVisualStyleBackColor = true;
-            this.btnXoaNv.Click += new System.EventHandler(this.btnXoaNv_Click);
             // 
             // btnSuaNv
             // 
@@ -1111,7 +1114,6 @@
             this.btnSuaNv.TabIndex = 6;
             this.btnSuaNv.Text = "Sửa";
             this.btnSuaNv.UseVisualStyleBackColor = true;
-            this.btnSuaNv.Click += new System.EventHandler(this.btnSuaNv_Click);
             // 
             // btnThemNv
             // 
@@ -1121,7 +1123,6 @@
             this.btnThemNv.TabIndex = 5;
             this.btnThemNv.Text = "Thêm";
             this.btnThemNv.UseVisualStyleBackColor = true;
-            this.btnThemNv.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // txtHoTenNv
             // 
@@ -1238,10 +1239,10 @@
         private System.Windows.Forms.DataGridView dtgvThongTinTour;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cbLoaiHinhID;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtGia;
+        private System.Windows.Forms.TextBox txtDacDiem;
+        private System.Windows.Forms.TextBox txtTenTour;
+        private System.Windows.Forms.TextBox txtMaTour;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -1249,8 +1250,8 @@
         private System.Windows.Forms.Label lbIDTour;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnXoaTour;
+        private System.Windows.Forms.Button btnSuaTour;
         private System.Windows.Forms.Button btnThemTtTour;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label14;
@@ -1272,12 +1273,12 @@
         private System.Windows.Forms.DataGridView dtgvDd;
         private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Button btnXoaCtTour;
+        private System.Windows.Forms.Button btnSuaCtTour;
+        private System.Windows.Forms.Button btnThemCtTour;
+        private System.Windows.Forms.DateTimePicker dtpNgay;
+        private System.Windows.Forms.ComboBox cbDiaDiemID;
+        private System.Windows.Forms.ComboBox cbTourID;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;

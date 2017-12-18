@@ -9,10 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TourApplication.DAL;
+using TourCommon.DAL;
 using TourApplication.GUI;
-using TourModel;
-using System.Data.Entity;
+using TourCommon.Model;
+using TourCommon.BUS;
 
 namespace TourApplication
 {
@@ -22,9 +22,13 @@ namespace TourApplication
         {
             InitializeComponent();
             DisplayTinh();
-            DisplayNhanVien();
+            //DisplayNhanVien();
             DisplayDiaDiemThamQuan();
+            DisplayTour();
+            LoadCbLoaiHinhID();
             LoadCbTinhID();
+            LoadCbDiaDiemID();
+            LoadCbTourID();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,18 +46,14 @@ namespace TourApplication
         {
 
         }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-        
+   
         #region Tinh
         private void btnThemTinh_Click(object sender, EventArgs e)
         {
             Tinh tinh = new Tinh();
+            TinhThamQuanBUS tinhBUS = new TinhThamQuanBUS();
             tinh.TenTinh = txtTenTinh.Text;
-            bool result = SaveTinh(tinh);
+            bool result = tinhBUS.SaveTinh(tinh);
             ClearTinh();
             DisplayTinh();
 
@@ -71,20 +71,6 @@ namespace TourApplication
                 dtgvTinh.DataSource = _TinhThamQuanList;
             }
         }
-
-        public bool SaveTinh(Tinh tinh) // calling SaveStudentMethod for insert a new record  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                _entity.Tinhs.Add(tinh);
-                _entity.SaveChanges();
-                result = true;
-
-            }
-            return result;
-        }
-
         private void dtgvTinh_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dtgvTinh.Rows.Count > 0)
@@ -96,50 +82,20 @@ namespace TourApplication
                 }
             }
         }
-
         private void btnSuaTinh_Click(object sender, EventArgs e)
         {
-            Tinh tinh = SetValues(Convert.ToInt32(lbIDTinh.Text),txtTenTinh.Text); // Binding values to StudentInformationModel  
-            bool result = UpdateTinh(tinh); // calling UpdateStudentDetails Method
+            TinhThamQuanBUS tinhBUS = new TinhThamQuanBUS();
+            Tinh tinh = tinhBUS.SetValues(Convert.ToInt32(lbIDTinh.Text),txtTenTinh.Text); // Binding values to StudentInformationModel  
+            bool result = tinhBUS.UpdateTinh(tinh); // calling UpdateStudentDetails Method
             ClearTinh();
             DisplayTinh();
         }
-        public bool UpdateTinh(Tinh tinh) // UpdateStudentDetails method for update a existing Record  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                Tinh _tinh = _entity.Tinhs.Where(x => x.ID == tinh.ID).Select(x => x).FirstOrDefault();
-                _tinh.TenTinh = tinh.TenTinh;
-                _entity.SaveChanges();
-                result = true;
-            }
-            return result;
-        }
-        public Tinh SetValues(int ID, string TenTinh) //Setvalues method for binding field values to StudentInformation Model class
-        {
-            Tinh tinh = new Tinh();
-            tinh.ID = ID;
-            tinh.TenTinh = TenTinh;
-            return tinh;
-        }
-        public bool DeleteTinh(Tinh tinh) // DeleteStudentDetails method to delete record from table  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                Tinh _tinh = _entity.Tinhs.Where(x => x.ID == tinh.ID).Select(x => x).FirstOrDefault();
-                _entity.Tinhs.Remove(_tinh);
-                _entity.SaveChanges();
-                result = true;
-            }
-            return result;
-        }
-  
+       
         private void btnXoaTinh_Click(object sender, EventArgs e)
         {
-            Tinh tinh = SetValues(Convert.ToInt32(lbIDTinh.Text), txtTenTinh.Text); // Binding values to StudentInformationModel  
-            bool result = DeleteTinh(tinh); //Calling DeleteStudentDetails Method
+            TinhThamQuanBUS tinhBUS = new TinhThamQuanBUS();
+            Tinh tinh = tinhBUS.SetValues(Convert.ToInt32(lbIDTinh.Text), txtTenTinh.Text); // Binding values to StudentInformationModel  
+            bool result = tinhBUS.DeleteTinh(tinh); //Calling DeleteStudentDetails Method
             ClearTinh();
             DisplayTinh();
         }
@@ -150,7 +106,7 @@ namespace TourApplication
         }
         #endregion
         #region NhanVien
-        public void DisplayNhanVien()   // Display Method is a common method to bind the Student details in datagridview after save,update and delete operation perform.
+        /*public void DisplayNhanVien()   // Display Method is a common method to bind the Student details in datagridview after save,update and delete operation perform.
         {
             using (TourDBEntities _entity = new TourDBEntities())
             {
@@ -169,54 +125,6 @@ namespace TourApplication
             lbIDNv.Text = "";
             txtMaNv.Text = "";
             txtHoTenNv.Text = "";
-        }
-        public bool SaveNhanVien(NhanVien nv) // calling SaveStudentMethod for insert a new record  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                _entity.NhanViens.Add(nv);
-                _entity.SaveChanges();
-                result = true;
-
-            }
-            return result;
-        }
-        public bool UpdateNhanVien(NhanVien nv) // UpdateStudentDetails method for update a existing Record  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                NhanVien _nhanvien = _entity.NhanViens.Where(x => x.ID == nv.ID).Select(x => x).FirstOrDefault();
-                _nhanvien.MaNhanVien = nv.MaNhanVien;
-                _nhanvien.HoTen = nv.HoTen;
-                _entity.SaveChanges();
-                result = true;
-            }
-            return result;
-        }
-        public NhanVien SetValues(int ID,string MaNhanVien,string HoTen) //Setvalues method for binding field values to StudentInformation Model class
-        {
-            NhanVien nv = new NhanVien();
-            nv.ID = ID;
-            nv.MaNhanVien = MaNhanVien;
-            nv.HoTen = HoTen;
-            return nv;
-        }
-        public bool DeleteNhanVien(NhanVien nv) // DeleteStudentDetails method to delete record from table  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                NhanVien _nhanvien = _entity.NhanViens.Where(x => x.ID == nv.ID).Select(x => x).FirstOrDefault();
-                //if (_nhanvien != null)
-                //{
-                _entity.NhanViens.Remove(_nhanvien);
-                    _entity.SaveChanges();
-                    result = true;
-                //}            
-            }
-            return result;
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -239,23 +147,23 @@ namespace TourApplication
                     txtHoTenNv.Text = row.Cells[2].Value.ToString();
                 }
             }
-        }
+        }*/
 
-        private void btnSuaNv_Click(object sender, EventArgs e)
+        /*private void btnSuaNv_Click(object sender, EventArgs e)
         {
             NhanVien nv = SetValues(Convert.ToInt32(lbIDNv.Text),txtMaNv.Text,txtHoTenNv.Text); // Binding values to StudentInformationModel  
             bool result = UpdateNhanVien(nv); // calling UpdateStudentDetails Method
             ClearNhanVien();
             DisplayNhanVien();
-        }
+        }*/
 
-        private void btnXoaNv_Click(object sender, EventArgs e)
+        /*private void btnXoaNv_Click(object sender, EventArgs e)
         {
             NhanVien nv = SetValues(Convert.ToInt32(lbIDNv.Text), txtMaNv.Text, txtHoTenNv.Text); // Binding values to StudentInformationModel  
             bool result = DeleteNhanVien(nv); //Calling DeleteStudentDetails Method
             ClearNhanVien();
             DisplayNhanVien();
-        }
+        }*/
         #endregion
         #region DiaDiem
         public void LoadCbTinhID()
@@ -279,57 +187,13 @@ namespace TourApplication
                 dtgvDd.DataSource = _DiaDiemThamQuanList;
             }
         }
-        public DiaDiem SetValues(int ID, string TenDiaDiem, int TinhID) //Setvalues method for binding field values to StudentInformation Model class
-        {
-            DiaDiem dd = new DiaDiem();
-            dd.ID = ID;
-            dd.TenDiaDiem = TenDiaDiem;
-            dd.TinhID = TinhID;
-            return dd;
-        }
-        public bool SaveDiaDiemThamQuan(DiaDiem dd) // calling SaveStudentMethod for insert a new record  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                _entity.DiaDiems.Add(dd);
-                _entity.SaveChanges();
-                result = true;
-            }
-            return result;
-        }
-        public bool UpdateDiaDiemThamQuan(DiaDiem dd) // UpdateStudentDetails method for update a existing Record  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                DiaDiem _diadiem = _entity.DiaDiems.Where(x => x.ID == dd.ID).Select(x => x).FirstOrDefault();
-                _diadiem.TenDiaDiem = dd.TenDiaDiem;
-                _diadiem.TinhID = dd.TinhID;
-                _entity.SaveChanges();
-                result = true;
-            }
-            return result;
-        }
-        public bool DeleteDiaDiemThamQuan(DiaDiem dd) // DeleteStudentDetails method to delete record from table  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                DiaDiem _diadiem = _entity.DiaDiems.Where(x => x.ID == dd.ID).Select(x => x).FirstOrDefault();
-                _entity.DiaDiems.Remove(_diadiem);
-                _entity.SaveChanges();
-                result = true;
-            }
-            return result;
-        }
-
         private void btnThemDd_Click(object sender, EventArgs e)
         {
+            DiaDiemThamQuanBUS diaDiemThamQuanBUS = new DiaDiemThamQuanBUS();
             DiaDiem dd = new DiaDiem();
             dd.TenDiaDiem = txtTenDd.Text;
             dd.TinhID = Convert.ToInt32(cbTinhID.SelectedValue);
-            bool result = SaveDiaDiemThamQuan(dd);
+            bool result = diaDiemThamQuanBUS.SaveDiaDiemThamQuan(dd);
             DisplayDiaDiemThamQuan();
         }
 
@@ -340,8 +204,9 @@ namespace TourApplication
 
         private void btnSuaDd_Click(object sender, EventArgs e)
         {
-            DiaDiem dd = SetValues(Convert.ToInt32(lbIDDd.Text), txtTenDd.Text, Convert.ToInt32(cbTinhID.SelectedValue));
-            bool result = UpdateDiaDiemThamQuan(dd);
+            DiaDiemThamQuanBUS diaDiemThamQuanBUS = new DiaDiemThamQuanBUS();
+            DiaDiem dd = diaDiemThamQuanBUS.SetValues(Convert.ToInt32(lbIDDd.Text), txtTenDd.Text, Convert.ToInt32(cbTinhID.SelectedValue));
+            bool result = diaDiemThamQuanBUS.UpdateDiaDiemThamQuan(dd);
             ClearDiaDiemThamQuan();
             DisplayDiaDiemThamQuan();
         }
@@ -367,12 +232,14 @@ namespace TourApplication
 
         private void btnXoaDd_Click(object sender, EventArgs e)
         {
-            DiaDiem dd = SetValues(Convert.ToInt32(lbIDDd.Text), txtTenDd.Text, Convert.ToInt32(cbTinhID.SelectedValue));
-            bool result = DeleteDiaDiemThamQuan(dd);
+            DiaDiemThamQuanBUS diaDiemThamQuanBUS = new DiaDiemThamQuanBUS();
+            DiaDiem dd = diaDiemThamQuanBUS.SetValues(Convert.ToInt32(lbIDDd.Text), txtTenDd.Text, Convert.ToInt32(cbTinhID.SelectedValue));
+            bool result = diaDiemThamQuanBUS.DeleteDiaDiemThamQuan(dd);
             ClearDiaDiemThamQuan();
             DisplayDiaDiemThamQuan();
         }
         #endregion
+        #region ThongTinTour
         public void LoadCbLoaiHinhID()
         {
             TourDBEntities db = new TourDBEntities();
@@ -380,6 +247,7 @@ namespace TourApplication
             this.cbLoaiHinhID.ValueMember = "ID";
             this.cbLoaiHinhID.DataSource = db.LoaiHinhs.ToList();
         }
+
         public void DisplayTour()
         {
             using (TourDBEntities _entity = new TourDBEntities())
@@ -397,50 +265,90 @@ namespace TourApplication
                 dtgvThongTinTour.DataSource = _TourList;
             }
         }
-        public Tour SetValues(int ID, string MaTour, string TenTour, string DacDiem, int Gia, int LoaiHinhID) //Setvalues method for binding field values to StudentInformation Model class
+
+        public void ClearTour() // Clear the fields after Insert or Update or Delete operation  
         {
-            Tour tour = new Tour();
-            dd.ID = ID;
-            dd.TenDiaDiem = TenDiaDiem;
-            dd.TinhID = TinhID;
-            return dd;
-        }
-        public bool SaveTour(DiaDiem dd) // calling SaveStudentMethod for insert a new record  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                _entity.DiaDiems.Add(dd);
-                _entity.SaveChanges();
-                result = true;
-            }
-            return result;
-        }
-        public bool UpdateTour(DiaDiem dd) // UpdateStudentDetails method for update a existing Record  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                DiaDiem _diadiem = _entity.DiaDiems.Where(x => x.ID == dd.ID).Select(x => x).FirstOrDefault();
-                _diadiem.TenDiaDiem = dd.TenDiaDiem;
-                _diadiem.TinhID = dd.TinhID;
-                _entity.SaveChanges();
-                result = true;
-            }
-            return result;
-        }
-        public bool DeleteTour(DiaDiem dd) // DeleteStudentDetails method to delete record from table  
-        {
-            bool result = false;
-            using (TourDBEntities _entity = new TourDBEntities())
-            {
-                DiaDiem _diadiem = _entity.DiaDiems.Where(x => x.ID == dd.ID).Select(x => x).FirstOrDefault();
-                _entity.DiaDiems.Remove(_diadiem);
-                _entity.SaveChanges();
-                result = true;
-            }
-            return result;
+            lbIDTour.Text = "";
+            txtMaTour.Text = "";
+            txtTenTour.Text = "";
+            txtDacDiem.Text = "";
+            txtGia.Text = "";
+            cbLoaiHinhID.Text = "";
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ThongTinTourBUS thongTinTourBUS = new ThongTinTourBUS();
+            Tour tour = thongTinTourBUS.SetValues(Convert.ToInt32(lbIDTour.Text), txtMaTour.Text, txtTenTour.Text, txtDacDiem.Text, Convert.ToInt32(txtGia.Text), Convert.ToInt32(cbLoaiHinhID.SelectedValue));
+            bool result = thongTinTourBUS.UpdateTour(tour);
+            ClearTour();
+            DisplayTour();
+        }
+
+        private void btnXoaTour_Click(object sender, EventArgs e)
+        {
+            ThongTinTourBUS thongTinTourBUS = new ThongTinTourBUS();
+            Tour tour = thongTinTourBUS.SetValues(Convert.ToInt32(lbIDTour.Text), txtMaTour.Text, txtTenTour.Text, txtDacDiem.Text, Convert.ToInt32(txtGia.Text), Convert.ToInt32(cbLoaiHinhID.SelectedValue));
+            bool result = thongTinTourBUS.DeleteTour(tour);
+            ClearTour();
+            DisplayTour();
+        }
+
+        private void dtgvThongTinTour_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dtgvThongTinTour.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dtgvThongTinTour.SelectedRows) // foreach datagridview selected rows values  
+                {
+                    lbIDTour.Text = row.Cells[0].Value.ToString();
+                    txtMaTour.Text = row.Cells[1].Value.ToString();
+                    txtTenTour.Text = row.Cells[2].Value.ToString();
+                    txtDacDiem.Text = row.Cells[3].Value.ToString();
+                    txtGia.Text = row.Cells[4].Value.ToString();
+                    cbLoaiHinhID.Text = row.Cells[5].Value.ToString();
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ThongTinTourBUS thongTinTourBUS = new ThongTinTourBUS();
+            Tour tour = new Tour();
+            tour.MaTour = txtMaTour.Text;
+            tour.TenTour = txtTenTour.Text;
+            tour.DacDiem = txtDacDiem.Text;
+            tour.Gia = Convert.ToInt32(txtGia.Text);
+            tour.LoaiHinhID = Convert.ToInt32(cbLoaiHinhID.SelectedValue);
+            bool result = thongTinTourBUS.SaveTour(tour);
+            DisplayTour();
+        }
+        #endregion
+        #region ChiTietTour
+        private void btnThemCtTour_Click(object sender, EventArgs e)
+        {
+            ChiTietThamQuanBUS chiTietThamQuanBUS = new ChiTietThamQuanBUS();
+            DiaDiemTour diaDiemTour = new DiaDiemTour();
+            diaDiemTour.Ngay = dtpNgay.Value;
+            diaDiemTour.TourID = Convert.ToInt32(cbTourID.SelectedValue);
+            diaDiemTour.DiaDiemID = Convert.ToInt32(cbDiaDiemID.SelectedValue);
+            bool result = chiTietThamQuanBUS.SaveChiTietTour(diaDiemTour);
+        }
+
+        public void LoadCbTourID()
+        {
+            TourDBEntities db = new TourDBEntities();
+            this.cbTourID.DisplayMember = "ID";
+            this.cbTourID.ValueMember = "ID";
+            this.cbTourID.DataSource = db.Tours.ToList();
+        }
+
+        public void LoadCbDiaDiemID()
+        {
+            TourDBEntities db = new TourDBEntities();
+            this.cbDiaDiemID.DisplayMember = "ID";
+            this.cbDiaDiemID.ValueMember = "ID";
+            this.cbDiaDiemID.DataSource = db.DiaDiems.ToList();
+        }
+        #endregion
     }
 }
