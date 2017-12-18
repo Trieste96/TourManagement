@@ -53,12 +53,14 @@
     <Compile Include="BUS\ChiTietThamQuanBUS.cs" />
     <Compile Include="BUS\DiaDiemThamQuanBUS.cs" />
     <Compile Include="BUS\NhanVienLamViecBUS.cs" />
+    <Compile Include="BUS\ThongKe.cs" />
     <Compile Include="BUS\ThongTinTourBUS.cs" />
     <Compile Include="BUS\TinhThamQuanBUS.cs" />
     <Compile Include="DAL\ChiPhiTourThamQuan.cs" />
     <Compile Include="DAL\ChiTietThamQuan.cs" />
     <Compile Include="DAL\DiaDiemThamQuan.cs" />
     <Compile Include="DAL\NhanVienLamViec.cs" />
+    <Compile Include="DAL\SoDoanTour.cs" />
     <Compile Include="DAL\ThongTinTour.cs" />
     <Compile Include="DAL\TinhThamQuan.cs" />
     <Compile Include="Model\ChiPhiDoan.cs">

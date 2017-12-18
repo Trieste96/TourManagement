@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "SoDoan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+
+@model IEnumerable<TourCommon.DAL.SoDoanTour>
+@using (Html.BeginForm("SoDoan", "ThongKe", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2">TuNgayGio</label>
+            <div class="col-md-10">
+                @Html.TextBox("TuNgayGio", null, new { @class = "form-control datepicker", @type = "date" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">DenNgayGio</label>
+            <div class="col-md-10">
+                @Html.TextBox("DenNgayGio", null, new { @class = "form-control datepicker", @type = "date" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Xem" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+@{
+    if (Model != null)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Tên tour")
+                </th>
+                <th>
+                    @Html.DisplayName("Số đoàn")
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenTour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoDoan)
+                    </td>
+                </tr>
+            }
+            </table>
+        }
+    }
+
