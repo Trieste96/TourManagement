@@ -28,6 +28,7 @@ namespace TourCommon.Model
         public virtual DbSet<ChiPhiDoan> ChiPhiDoans { get; set; }
         public virtual DbSet<ChiPhiTour> ChiPhiTours { get; set; }
         public virtual DbSet<DiaDiem> DiaDiems { get; set; }
+        public virtual DbSet<DiaDiemTour> DiaDiemTours { get; set; }
         public virtual DbSet<DoanDuLich> DoanDuLiches { get; set; }
         public virtual DbSet<KhachDuLich> KhachDuLiches { get; set; }
         public virtual DbSet<LoaiChiPhi> LoaiChiPhis { get; set; }
@@ -35,10 +36,9 @@ namespace TourCommon.Model
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<NhanVienDoan> NhanVienDoans { get; set; }
         public virtual DbSet<NhiemVu> NhiemVus { get; set; }
+        public virtual DbSet<ThanhVienDoan> ThanhVienDoans { get; set; }
         public virtual DbSet<Tinh> Tinhs { get; set; }
         public virtual DbSet<TinhTrangDoan> TinhTrangDoans { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
-        public virtual DbSet<ThanhVienDoan> ThanhVienDoans { get; set; }
-        public virtual DbSet<DiaDiemTour> DiaDiemTours { get; set; }
     }
 }

@@ -18,8 +18,8 @@ namespace TourCommon.Model
         public Tour()
         {
             this.ChiPhiTours = new HashSet<ChiPhiTour>();
-            this.DoanDuLiches = new HashSet<DoanDuLich>();
             this.DiaDiemTours = new HashSet<DiaDiemTour>();
+            this.DoanDuLiches = new HashSet<DoanDuLich>();
         }
     
         public int ID { get; set; }
@@ -32,9 +32,9 @@ namespace TourCommon.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiPhiTour> ChiPhiTours { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DiaDiemTour> DiaDiemTours { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DoanDuLich> DoanDuLiches { get; set; }
         public virtual LoaiHinh LoaiHinh { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DiaDiemTour> DiaDiemTours { get; set; }
     }
 }

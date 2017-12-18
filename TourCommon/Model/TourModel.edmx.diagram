@@ -4,10 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d8efc166ea6a4ea08699b67b0bd9199d" Name="Diagram1">
+      <Diagram DiagramId="13081d11800f44d3ad99fe4af6f1fb49" Name="Diagram1">
         <EntityTypeShape EntityType="TourDBModel.ChiPhiDoan" Width="1.5" PointX="10.5" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TourDBModel.ChiPhiTour" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TourDBModel.DiaDiem" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TourDBModel.DiaDiemTour" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TourDBModel.DoanDuLich" Width="1.5" PointX="8.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TourDBModel.KhachDuLich" Width="1.5" PointX="11.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TourDBModel.LoaiChiPhi" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
@@ -15,26 +16,25 @@
         <EntityTypeShape EntityType="TourDBModel.NhanVien" Width="1.5" PointX="11.25" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="TourDBModel.NhanVienDoan" Width="1.5" PointX="13.5" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TourDBModel.NhiemVu" Width="1.5" PointX="11.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TourDBModel.ThanhVienDoan" Width="1.5" PointX="13.5" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="TourDBModel.Tinh" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TourDBModel.TinhTrangDoan" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TourDBModel.Tour" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourDBModel.ThanhVienDoan" Width="1.5" PointX="13.5" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourDBModel.DiaDiemTour" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
-        <AssociationConnector Association="TourDBModel.FK__ChiPhiDoa__DoanI__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__ChiPhiDoa__LoaiC__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__ChiPhiTou__LoaiC__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__ChiPhiTou__TourI__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__DiaDiem__TinhID__36B12243" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__DiaDiemTo__DiaDi__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__DoanDuLic__TinhT__3D5E1FD2" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__DoanDuLic__TourI__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__NhanVienD__DoanI__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__ThanhVien__DoanI__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__ThanhVien__Khach__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__Tour__LoaiHinhID__33D4B598" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__NhanVienD__NhanV__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__NhanVienD__Nhiem__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="TourDBModel.FK__DiaDiemTo__TourI__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__ChiPhiDoa__DoanI__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__ChiPhiDoa__LoaiC__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__ChiPhiTou__LoaiC__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__ChiPhiTou__TourI__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__DiaDiem__TinhID__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__DiaDiemTo__DiaDi__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__DiaDiemTo__TourI__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__DoanDuLic__TinhT__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__DoanDuLic__TourI__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__NhanVienD__DoanI__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__ThanhVien__DoanI__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__ThanhVien__Khach__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__Tour__LoaiHinhID__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__NhanVienD__NhanV__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="TourDBModel.FK__NhanVienD__Nhiem__34C8D9D1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

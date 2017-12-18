@@ -15,8 +15,8 @@ namespace TourCommon.Model
     public partial class DiaDiemTour
     {
         public System.DateTime Ngay { get; set; }
-        public int TourID { get; set; }
         public int DiaDiemID { get; set; }
+        public int TourID { get; set; }
     
         public virtual DiaDiem DiaDiem { get; set; }
         public virtual Tour Tour { get; set; }
