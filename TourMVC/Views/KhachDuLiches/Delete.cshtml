@@ -1,4 +1,4 @@
-﻿@model TourMVC.Models.KhachDuLich
+﻿@model TourCommon.Model.KhachDuLich
 
 @{
     ViewBag.Title = "Delete";
@@ -46,11 +46,18 @@
         <dt>
             @Html.DisplayNameFor(model => model.GioiTinh)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GioiTinh)
-        </dd>
-
+        @if (Model.GioiTinh == true)
+        {
+            <dd>
+                @Html.DisplayName("Nam")
+            </dd>
+        }
+        else
+        {
+            <dd>
+                @Html.DisplayName("Nữ")
+            </dd>
+        }
         <dt>
             @Html.DisplayNameFor(model => model.SDT)
         </dt>

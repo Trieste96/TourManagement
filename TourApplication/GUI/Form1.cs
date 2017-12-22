@@ -25,10 +25,14 @@ namespace TourApplication
             //DisplayNhanVien();
             DisplayDiaDiemThamQuan();
             DisplayTour();
+            DisplayChiTietThamQuan();
+            DisplayChiPhiTour();
             LoadCbLoaiHinhID();
             LoadCbTinhID();
             LoadCbDiaDiemID();
             LoadCbTourID();
+            LoadCbLoaiCp();
+            LoadCbTourIDCp();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -317,7 +321,7 @@ namespace TourApplication
             tour.MaTour = txtMaTour.Text;
             tour.TenTour = txtTenTour.Text;
             tour.DacDiem = txtDacDiem.Text;
-            tour.Gia = Convert.ToInt32(txtGia.Text);
+            //tour.Gia = Convert.ToInt32(txtGia.Text);
             tour.LoaiHinhID = Convert.ToInt32(cbLoaiHinhID.SelectedValue);
             bool result = thongTinTourBUS.SaveTour(tour);
             DisplayTour();
@@ -331,7 +335,7 @@ namespace TourApplication
             diaDiemTour.Ngay = dtpNgay.Value;
             diaDiemTour.TourID = Convert.ToInt32(cbTourID.SelectedValue);
             diaDiemTour.DiaDiemID = Convert.ToInt32(cbDiaDiemID.SelectedValue);
-            bool result = chiTietThamQuanBUS.SaveChiTietTour(diaDiemTour);
+            bool result = chiTietThamQuanBUS.SaveChiTietThamQuan(diaDiemTour);
         }
 
         public void LoadCbTourID()
@@ -348,6 +352,151 @@ namespace TourApplication
             this.cbDiaDiemID.DisplayMember = "ID";
             this.cbDiaDiemID.ValueMember = "ID";
             this.cbDiaDiemID.DataSource = db.DiaDiems.ToList();
+        }
+
+        public void DisplayChiTietThamQuan()
+        {
+            using (TourDBEntities _entity = new TourDBEntities())
+            {
+                List<ChiTietThamQuan> _CtThamQuanList = new List<ChiTietThamQuan>();
+                _CtThamQuanList = _entity.DiaDiemTours.Select(x => new ChiTietThamQuan
+                {
+                    Ngay = x.Ngay,
+                    TourID = x.TourID,
+                    DiaDiemID = x.DiaDiemID
+                }).ToList();
+                dtgvCtThamQuan.DataSource = _CtThamQuanList;
+            }
+        }
+       
+        private void btnSuaCtTour_Click(object sender, EventArgs e)
+        {
+            ChiTietThamQuanBUS chiTietThamQuanBUS = new ChiTietThamQuanBUS();
+            DiaDiemTour diaDiemTour = chiTietThamQuanBUS.SetValues(dtpNgay.Value, Convert.ToInt32(cbTourID.SelectedValue), Convert.ToInt32(cbDiaDiemID.SelectedValue));
+            bool result = chiTietThamQuanBUS.UpdateChiTietThamQuan(diaDiemTour);
+            ClearChiTietThamQuan();
+            DisplayChiTietThamQuan();
+        }
+
+        public void ClearChiTietThamQuan()
+        {
+            cbTourID.Text = "";
+            cbDiaDiemID.Text = "";
+        }
+
+        private void btnXoaCtTour_Click(object sender, EventArgs e)
+        {
+            ChiTietThamQuanBUS chiTietThamQuanBUS = new ChiTietThamQuanBUS();
+            DiaDiemTour diaDiemTour = chiTietThamQuanBUS.SetValues(dtpNgay.Value, Convert.ToInt32(cbTourID.SelectedValue), Convert.ToInt32(cbDiaDiemID.SelectedValue));
+            bool result = chiTietThamQuanBUS.DeleteChiTietThamQuan(diaDiemTour);
+            ClearChiTietThamQuan();
+            DisplayChiTietThamQuan();
+        }
+
+        private void dtgvCtThamQuan_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dtgvThongTinTour.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dtgvCtThamQuan.SelectedRows) // foreach datagridview selected rows values  
+                {
+                    dtpNgay.Value = Convert.ToDateTime(row.Cells[0].Value.ToString());
+                    cbTourID.Text = row.Cells[1].Value.ToString();
+                    cbDiaDiemID.Text = row.Cells[2].Value.ToString();
+                }
+            }
+        }
+        #endregion
+        #region ChiPhiTour
+        public void LoadCbTourIDCp()
+        {
+            TourDBEntities db = new TourDBEntities();
+            this.cbTourIDCp.DisplayMember = "ID";
+            this.cbTourIDCp.ValueMember = "ID";
+            this.cbTourIDCp.DataSource = db.Tours.ToList();
+        }
+
+        public void LoadCbLoaiCp()
+        {
+            TourDBEntities db = new TourDBEntities();
+            this.cbLoaiCp.DisplayMember = "ID";
+            this.cbLoaiCp.ValueMember = "ID";
+            this.cbLoaiCp.DataSource = db.LoaiChiPhis.ToList();
+        }
+
+        public void DisplayChiPhiTour()
+        {
+            using (TourDBEntities _entity = new TourDBEntities())
+            {
+                List<ChiPhiTourThamQuan> _CpThamQuanList = new List<ChiPhiTourThamQuan>();
+                _CpThamQuanList = _entity.ChiPhiTours.Select(x => new ChiPhiTourThamQuan
+                {
+                    ID = x.ID,
+                    TenChiPhi = x.TenChiPhi,
+                    ChiPhiUocTinh = x.ChiPhiUocTinh,
+                    GhiChu = x.GhiChu,
+                    TourID = x.TourID,
+                    LoaiCP = x.LoaiCP
+                }).ToList();
+                dtgvCpTour.DataSource = _CpThamQuanList;
+            }
+        }
+
+        private void btnThemCpTour_Click(object sender, EventArgs e)
+        {
+            ChiPhiTourThamQuanBUS cptBUS = new ChiPhiTourThamQuanBUS();
+            ChiPhiTour chiPhiTour = new ChiPhiTour();
+            //chiPhiTour.ID = Convert.ToInt32(lbIDCp.Text);
+            chiPhiTour.TenChiPhi = txtTenCp.Text;
+            chiPhiTour.ChiPhiUocTinh = Convert.ToInt32(txtCpUocTinh.Text);
+            chiPhiTour.GhiChu = txtGhiChu.Text;
+            chiPhiTour.TourID = Convert.ToInt32(cbTourIDCp.SelectedValue);
+            chiPhiTour.LoaiCP = Convert.ToInt32(cbLoaiCp.SelectedValue);
+            bool result = cptBUS.SaveChiPhiTour(chiPhiTour);
+            DisplayChiPhiTour();
+        }
+
+        private void btnSuaCpTour_Click(object sender, EventArgs e)
+        {
+            ChiPhiTourThamQuanBUS cptBUS = new ChiPhiTourThamQuanBUS();
+            ChiPhiTour chiPhiTour = cptBUS.SetValues(Convert.ToInt32(lbIDCp.Text),txtTenCp.Text,Convert.ToInt32(txtCpUocTinh.Text),txtGhiChu.Text,Convert.ToInt32(cbTourIDCp.SelectedValue),Convert.ToInt32(cbLoaiCp.SelectedValue));
+            bool result = cptBUS.UpdateChiPhiTour(chiPhiTour);
+            ClearChiPhiTour();
+            DisplayChiPhiTour();
+        }
+
+        public void ClearChiPhiTour()
+        {
+            lbIDCp.Text = "";
+            txtTenCp.Text = "";
+            txtCpUocTinh.Text = "";
+            txtGhiChu.Text = "";
+            cbTourIDCp.Text = "";
+            cbLoaiCp.Text = "";
+        }
+
+        private void btnXoaCpTour_Click(object sender, EventArgs e)
+        {
+            ChiPhiTourThamQuanBUS cptBUS = new ChiPhiTourThamQuanBUS();
+            ChiPhiTour chiPhiTour = cptBUS.SetValues(Convert.ToInt32(lbIDCp.Text), txtTenCp.Text, Convert.ToInt32(txtCpUocTinh.Text), txtGhiChu.Text, Convert.ToInt32(cbTourIDCp.SelectedValue), Convert.ToInt32(cbLoaiCp.SelectedValue));
+            bool result = cptBUS.DeleteChiPhiTour(chiPhiTour);
+            ClearChiPhiTour();
+            DisplayChiPhiTour();
+        }
+
+        private void dtgvCpTour_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dtgvCpTour.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dtgvCpTour.SelectedRows) // foreach datagridview selected rows values  
+                {
+                    lbIDCp.Text = row.Cells[0].Value.ToString();
+                    txtTenCp.Text= row.Cells[1].Value.ToString();
+                    txtCpUocTinh.Text= row.Cells[2].Value.ToString();
+                    txtGhiChu.Text= row.Cells[3].Value.ToString();
+                    cbTourIDCp.Text = row.Cells[4].Value.ToString();
+                    cbLoaiCp.Text = row.Cells[5].Value.ToString();
+                }
+            }
         }
         #endregion
     }

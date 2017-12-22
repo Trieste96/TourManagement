@@ -1,0 +1,42 @@
+﻿@model TourCommon.Model.ThanhVienDoan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ThanhVienDoan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TyLeTraLai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TyLeTraLai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoanDuLich.TenDoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoanDuLich.TenDoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachDuLich.MaKhach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachDuLich.MaKhach)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

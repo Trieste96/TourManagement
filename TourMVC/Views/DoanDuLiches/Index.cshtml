@@ -1,0 +1,76 @@
+﻿@model IEnumerable<TourCommon.Model.DoanDuLich>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaDoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenDoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayKhoiHanh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayKetThuc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChiTietND)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiaTour)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.TinhTrangDoan.TenTinhTrang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tour.MaTour)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaDoan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenDoan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayKhoiHanh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayKetThuc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChiTietND)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaTour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TinhTrangDoan.TenTinhTrang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tour.MaTour)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

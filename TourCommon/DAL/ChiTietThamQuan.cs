@@ -11,5 +11,6 @@ namespace TourCommon.DAL
         public DateTime Ngay { get; set; }
         public int TourID { get; set; }
         public int DiaDiemID { get; set; }
+
     }
 }

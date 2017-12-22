@@ -10,107 +10,116 @@ using TourCommon.Model;
 
 namespace TourMVC.Controllers
 {
-    public class KhachDuLichesController : Controller
+    public class ThanhVienDoansController : Controller
     {
         private TourDBEntities db = new TourDBEntities();
 
-        // GET: KhachDuLiches
+        // GET: ThanhVienDoans
         public ActionResult Index()
         {
-            return View(db.KhachDuLiches.ToList());
+            var thanhVienDoans = db.ThanhVienDoans.Include(t => t.DoanDuLich).Include(t => t.KhachDuLich);
+            return View(thanhVienDoans.ToList());
         }
 
-        // GET: KhachDuLiches/Details/5
+        // GET: ThanhVienDoans/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            ThanhVienDoan thanhVienDoan = db.ThanhVienDoans.Find(id);
+            if (thanhVienDoan == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            return View(thanhVienDoan);
         }
 
-        // GET: KhachDuLiches/Create
+        // GET: ThanhVienDoans/Create
         public ActionResult Create()
         {
+            ViewBag.DoanID = new SelectList(db.DoanDuLiches, "ID", "TenDoan");
+            ViewBag.KhachID = new SelectList(db.KhachDuLiches, "ID", "MaKhach");
             return View();
         }
 
-        // POST: KhachDuLiches/Create
+        // POST: ThanhVienDoans/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MaKhach,HoTen,CMND,DiaChi,GioiTinh,SDT")] KhachDuLich khachDuLich)
+        public ActionResult Create([Bind(Include = "ID,TyLeTraLai,DoanID,KhachID")] ThanhVienDoan thanhVienDoan)
         {
             if (ModelState.IsValid)
             {
-                db.KhachDuLiches.Add(khachDuLich);
+                db.ThanhVienDoans.Add(thanhVienDoan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(khachDuLich);
+            ViewBag.DoanID = new SelectList(db.DoanDuLiches, "ID", "TenDoan", thanhVienDoan.DoanID);
+            ViewBag.KhachID = new SelectList(db.KhachDuLiches, "ID", "MaKhach", thanhVienDoan.KhachID);
+            return View(thanhVienDoan);
         }
 
-        // GET: KhachDuLiches/Edit/5
+        // GET: ThanhVienDoans/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            ThanhVienDoan thanhVienDoan = db.ThanhVienDoans.Find(id);
+            if (thanhVienDoan == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            ViewBag.DoanID = new SelectList(db.DoanDuLiches, "ID", "TenDoan", thanhVienDoan.DoanID);
+            ViewBag.KhachID = new SelectList(db.KhachDuLiches, "ID", "MaKhach", thanhVienDoan.KhachID);
+            return View(thanhVienDoan);
         }
 
-        // POST: KhachDuLiches/Edit/5
+        // POST: ThanhVienDoans/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MaKhach,HoTen,CMND,DiaChi,GioiTinh,SDT")] KhachDuLich khachDuLich)
+        public ActionResult Edit([Bind(Include = "ID,TyLeTraLai,DoanID,KhachID")] ThanhVienDoan thanhVienDoan)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(khachDuLich).State = EntityState.Modified;
+                db.Entry(thanhVienDoan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(khachDuLich);
+            ViewBag.DoanID = new SelectList(db.DoanDuLiches, "ID", "TenDoan", thanhVienDoan.DoanID);
+            ViewBag.KhachID = new SelectList(db.KhachDuLiches, "ID", "MaKhach", thanhVienDoan.KhachID);
+            return View(thanhVienDoan);
         }
 
-        // GET: KhachDuLiches/Delete/5
+        // GET: ThanhVienDoans/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            ThanhVienDoan thanhVienDoan = db.ThanhVienDoans.Find(id);
+            if (thanhVienDoan == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            return View(thanhVienDoan);
         }
 
-        // POST: KhachDuLiches/Delete/5
+        // POST: ThanhVienDoans/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            db.KhachDuLiches.Remove(khachDuLich);
+            ThanhVienDoan thanhVienDoan = db.ThanhVienDoans.Find(id);
+            db.ThanhVienDoans.Remove(thanhVienDoan);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

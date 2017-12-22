@@ -171,76 +171,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChiPhiDoansController.cs" />
+    <Compile Include="Controllers\DoanDuLichesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachDuLichesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NhanVienDoansController.cs" />
     <Compile Include="Controllers\NhanViensController.cs" />
+    <Compile Include="Controllers\NhiemVusController.cs" />
+    <Compile Include="Controllers\ThanhVienDoansController.cs" />
+    <Compile Include="Controllers\TinhTrangDoansController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ChiPhiDoan.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ChiPhiTour.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DiaDiem.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DiaDiemTour.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DoanDuLich.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\KhachDuLich.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoaiChiPhi.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoaiHinh.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\NhanVien.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NhanVienDoan.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NhiemVu.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ThanhVienDoan.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Tinh.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TinhTrangDoan.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Tour.cs">
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TourModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TourModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TourModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TourModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TourModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TourModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -251,25 +197,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\TourModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TourModel.edmx</DependentUpon>
-      <LastGenOutput>TourModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\TourModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TourModel.edmx</DependentUpon>
-      <LastGenOutput>TourModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\TourModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TourModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TourModel.edmx.diagram">
-      <DependentUpon>TourModel.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -316,16 +245,46 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\KhachDuLiches\Create.cshtml" />
-    <Content Include="Views\KhachDuLiches\Delete.cshtml" />
-    <Content Include="Views\KhachDuLiches\Details.cshtml" />
-    <Content Include="Views\KhachDuLiches\Edit.cshtml" />
-    <Content Include="Views\KhachDuLiches\Index.cshtml" />
     <Content Include="Views\NhanViens\Create.cshtml" />
     <Content Include="Views\NhanViens\Delete.cshtml" />
     <Content Include="Views\NhanViens\Details.cshtml" />
     <Content Include="Views\NhanViens\Edit.cshtml" />
     <Content Include="Views\NhanViens\Index.cshtml" />
+    <Content Include="Views\KhachDuLiches\Create.cshtml" />
+    <Content Include="Views\KhachDuLiches\Delete.cshtml" />
+    <Content Include="Views\KhachDuLiches\Details.cshtml" />
+    <Content Include="Views\KhachDuLiches\Edit.cshtml" />
+    <Content Include="Views\KhachDuLiches\Index.cshtml" />
+    <Content Include="Views\ChiPhiDoans\Create.cshtml" />
+    <Content Include="Views\ChiPhiDoans\Delete.cshtml" />
+    <Content Include="Views\ChiPhiDoans\Details.cshtml" />
+    <Content Include="Views\ChiPhiDoans\Edit.cshtml" />
+    <Content Include="Views\ChiPhiDoans\Index.cshtml" />
+    <Content Include="Views\DoanDuLiches\Create.cshtml" />
+    <Content Include="Views\DoanDuLiches\Delete.cshtml" />
+    <Content Include="Views\DoanDuLiches\Details.cshtml" />
+    <Content Include="Views\DoanDuLiches\Edit.cshtml" />
+    <Content Include="Views\DoanDuLiches\Index.cshtml" />
+    <Content Include="Views\NhiemVus\Create.cshtml" />
+    <Content Include="Views\NhiemVus\Delete.cshtml" />
+    <Content Include="Views\NhiemVus\Details.cshtml" />
+    <Content Include="Views\NhiemVus\Edit.cshtml" />
+    <Content Include="Views\NhiemVus\Index.cshtml" />
+    <Content Include="Views\ThanhVienDoans\Create.cshtml" />
+    <Content Include="Views\ThanhVienDoans\Delete.cshtml" />
+    <Content Include="Views\ThanhVienDoans\Details.cshtml" />
+    <Content Include="Views\ThanhVienDoans\Edit.cshtml" />
+    <Content Include="Views\ThanhVienDoans\Index.cshtml" />
+    <Content Include="Views\NhanVienDoans\Create.cshtml" />
+    <Content Include="Views\NhanVienDoans\Delete.cshtml" />
+    <Content Include="Views\NhanVienDoans\Details.cshtml" />
+    <Content Include="Views\NhanVienDoans\Edit.cshtml" />
+    <Content Include="Views\NhanVienDoans\Index.cshtml" />
+    <Content Include="Views\TinhTrangDoans\Create.cshtml" />
+    <Content Include="Views\TinhTrangDoans\Delete.cshtml" />
+    <Content Include="Views\TinhTrangDoans\Details.cshtml" />
+    <Content Include="Views\TinhTrangDoans\Edit.cshtml" />
+    <Content Include="Views\TinhTrangDoans\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

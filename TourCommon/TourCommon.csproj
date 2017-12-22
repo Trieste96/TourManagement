@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\ChiPhiTourThamQuanBUS.cs" />
     <Compile Include="BUS\ChiTietThamQuanBUS.cs" />
     <Compile Include="BUS\DiaDiemThamQuanBUS.cs" />
     <Compile Include="BUS\NhanVienLamViecBUS.cs" />
@@ -124,23 +125,24 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Model\TourModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TourModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Model\TourModel.edmx.diagram">
       <DependentUpon>TourModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\TourModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TourModel.Context.cs</LastGenOutput>
       <DependentUpon>TourModel.edmx</DependentUpon>
+      <LastGenOutput>TourModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\TourModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -148,9 +150,5 @@
       <LastGenOutput>TourModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

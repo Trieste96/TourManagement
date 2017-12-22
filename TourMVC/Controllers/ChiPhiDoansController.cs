@@ -10,107 +10,118 @@ using TourCommon.Model;
 
 namespace TourMVC.Controllers
 {
-    public class KhachDuLichesController : Controller
+    public class ChiPhiDoansController : Controller
     {
         private TourDBEntities db = new TourDBEntities();
 
-        // GET: KhachDuLiches
+        // GET: ChiPhiDoans
         public ActionResult Index()
         {
-            return View(db.KhachDuLiches.ToList());
+            var chiPhiDoans = db.ChiPhiDoans.Include(c => c.DoanDuLich).Include(c => c.LoaiChiPhi);
+            return View(chiPhiDoans.ToList());
         }
 
-        // GET: KhachDuLiches/Details/5
+        // GET: ChiPhiDoans/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            ChiPhiDoan chiPhiDoan = db.ChiPhiDoans.Find(id);
+            if (chiPhiDoan == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            return View(chiPhiDoan);
         }
 
-        // GET: KhachDuLiches/Create
+        // GET: ChiPhiDoans/Create
         public ActionResult Create()
         {
+            ViewBag.DoanID = new SelectList(db.DoanDuLiches, "ID", "TenDoan");
+            ViewBag.LoaiCP = new SelectList(db.LoaiChiPhis, "ID", "TenLoaiCP");
             return View();
         }
 
-        // POST: KhachDuLiches/Create
+        // POST: ChiPhiDoans/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MaKhach,HoTen,CMND,DiaChi,GioiTinh,SDT")] KhachDuLich khachDuLich)
+        public ActionResult Create([Bind(Include = "ID,TenChiPhi,ChiPhiThucTe,SoLuong,Tong,GhiChu,DoanID,LoaiCP")] ChiPhiDoan chiPhiDoan)
         {
             if (ModelState.IsValid)
             {
-                db.KhachDuLiches.Add(khachDuLich);
+                chiPhiDoan.Tong = chiPhiDoan.ChiPhiThucTe * chiPhiDoan.SoLuong;
+                db.ChiPhiDoans.Add(chiPhiDoan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(khachDuLich);
+            ViewBag.DoanID = new SelectList(db.DoanDuLiches, "ID", "TenDoan", chiPhiDoan.DoanID);
+            ViewBag.LoaiCP = new SelectList(db.LoaiChiPhis, "ID", "TenLoaiCP", chiPhiDoan.LoaiCP);
+            return View(chiPhiDoan);
         }
 
-        // GET: KhachDuLiches/Edit/5
+        // GET: ChiPhiDoans/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            ChiPhiDoan chiPhiDoan = db.ChiPhiDoans.Find(id);
+            if (chiPhiDoan == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            ViewBag.DoanID = new SelectList(db.DoanDuLiches, "ID", "TenDoan", chiPhiDoan.DoanID);
+            ViewBag.LoaiCP = new SelectList(db.LoaiChiPhis, "ID", "TenLoaiCP", chiPhiDoan.LoaiCP);
+            return View(chiPhiDoan);
         }
 
-        // POST: KhachDuLiches/Edit/5
+        // POST: ChiPhiDoans/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MaKhach,HoTen,CMND,DiaChi,GioiTinh,SDT")] KhachDuLich khachDuLich)
+        public ActionResult Edit([Bind(Include = "ID,TenChiPhi,ChiPhiThucTe,SoLuong,Tong,GhiChu,DoanID,LoaiCP")] ChiPhiDoan chiPhiDoan)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(khachDuLich).State = EntityState.Modified;
+                db.Entry(chiPhiDoan).State = EntityState.Modified;
+                chiPhiDoan.Tong = chiPhiDoan.ChiPhiThucTe * chiPhiDoan.SoLuong;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(khachDuLich);
+            ViewBag.DoanID = new SelectList(db.DoanDuLiches, "ID", "TenDoan", chiPhiDoan.DoanID);
+            ViewBag.LoaiCP = new SelectList(db.LoaiChiPhis, "ID", "TenLoaiCP", chiPhiDoan.LoaiCP);
+            return View(chiPhiDoan);
         }
 
-        // GET: KhachDuLiches/Delete/5
+        // GET: ChiPhiDoans/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            ChiPhiDoan chiPhiDoan = db.ChiPhiDoans.Find(id);
+            if (chiPhiDoan == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            return View(chiPhiDoan);
         }
 
-        // POST: KhachDuLiches/Delete/5
+        // POST: ChiPhiDoans/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            db.KhachDuLiches.Remove(khachDuLich);
+            ChiPhiDoan chiPhiDoan = db.ChiPhiDoans.Find(id);
+            db.ChiPhiDoans.Remove(chiPhiDoan);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

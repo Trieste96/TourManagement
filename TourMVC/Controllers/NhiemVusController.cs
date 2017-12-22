@@ -10,107 +10,107 @@ using TourCommon.Model;
 
 namespace TourMVC.Controllers
 {
-    public class KhachDuLichesController : Controller
+    public class NhiemVusController : Controller
     {
         private TourDBEntities db = new TourDBEntities();
 
-        // GET: KhachDuLiches
+        // GET: NhiemVus
         public ActionResult Index()
         {
-            return View(db.KhachDuLiches.ToList());
+            return View(db.NhiemVus.ToList());
         }
 
-        // GET: KhachDuLiches/Details/5
+        // GET: NhiemVus/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            NhiemVu nhiemVu = db.NhiemVus.Find(id);
+            if (nhiemVu == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            return View(nhiemVu);
         }
 
-        // GET: KhachDuLiches/Create
+        // GET: NhiemVus/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: KhachDuLiches/Create
+        // POST: NhiemVus/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MaKhach,HoTen,CMND,DiaChi,GioiTinh,SDT")] KhachDuLich khachDuLich)
+        public ActionResult Create([Bind(Include = "ID,TenNhiemVu")] NhiemVu nhiemVu)
         {
             if (ModelState.IsValid)
             {
-                db.KhachDuLiches.Add(khachDuLich);
+                db.NhiemVus.Add(nhiemVu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(khachDuLich);
+            return View(nhiemVu);
         }
 
-        // GET: KhachDuLiches/Edit/5
+        // GET: NhiemVus/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            NhiemVu nhiemVu = db.NhiemVus.Find(id);
+            if (nhiemVu == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            return View(nhiemVu);
         }
 
-        // POST: KhachDuLiches/Edit/5
+        // POST: NhiemVus/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MaKhach,HoTen,CMND,DiaChi,GioiTinh,SDT")] KhachDuLich khachDuLich)
+        public ActionResult Edit([Bind(Include = "ID,TenNhiemVu")] NhiemVu nhiemVu)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(khachDuLich).State = EntityState.Modified;
+                db.Entry(nhiemVu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(khachDuLich);
+            return View(nhiemVu);
         }
 
-        // GET: KhachDuLiches/Delete/5
+        // GET: NhiemVus/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            NhiemVu nhiemVu = db.NhiemVus.Find(id);
+            if (nhiemVu == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            return View(nhiemVu);
         }
 
-        // POST: KhachDuLiches/Delete/5
+        // POST: NhiemVus/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            db.KhachDuLiches.Remove(khachDuLich);
+            NhiemVu nhiemVu = db.NhiemVus.Find(id);
+            db.NhiemVus.Remove(nhiemVu);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

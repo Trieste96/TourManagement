@@ -1,0 +1,74 @@
+﻿@model TourCommon.Model.ChiPhiDoan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChiPhiDoan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenChiPhi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenChiPhi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChiPhiThucTe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChiPhiThucTe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoanDuLich.TenDoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoanDuLich.TenDoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiChiPhi.TenLoaiCP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiChiPhi.TenLoaiCP)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

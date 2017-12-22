@@ -1,0 +1,82 @@
+﻿@model TourCommon.Model.DoanDuLich
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DoanDuLich</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenDoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayKhoiHanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayKhoiHanh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayKetThuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayKetThuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChiTietND)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChiTietND)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaTour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaTour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaDoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrangDoan.TenTinhTrang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrangDoan.TenTinhTrang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tour.MaTour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tour.MaTour)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

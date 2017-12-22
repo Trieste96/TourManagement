@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TourCommon.Model.NhanVienDoan>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DoanDuLich.TenDoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NhanVien.MaNhanVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NhiemVu.TenNhiemVu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DoanDuLich.TenDoan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhanVien.MaNhanVien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhiemVu.TenNhiemVu)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

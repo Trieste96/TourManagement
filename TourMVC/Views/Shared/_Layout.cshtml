@@ -24,7 +24,28 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Khách Du Lịch","Index","KhachDuLiches")</li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Quản Lý Nhân Viên<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Nhân Viên", "Index", "NhanViens")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Nhân Viên Theo Đoàn", "Index", "NhanVienDoans")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Quản Lý Đoàn<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Khách Du Lịch", "Index", "KhachDuLiches")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Đoàn Du Lịch", "Index", "DoanDuLiches")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Thành Viên Đoàn", "Index", "ThanhVienDoans")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Chi Phí Đoàn", "Index", "ChiPhiDoans")</li>
+            
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

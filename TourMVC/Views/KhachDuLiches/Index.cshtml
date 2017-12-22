@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TourMVC.Models.KhachDuLich>
+﻿@model IEnumerable<TourCommon.Model.KhachDuLich>
 
 @{
     ViewBag.Title = "Index";
@@ -46,9 +46,18 @@
         <td>
             @Html.DisplayFor(modelItem => item.DiaChi)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GioiTinh)
-        </td>
+        @if (item.GioiTinh == true)
+        {
+            <td>
+                @Html.DisplayName("Nam")
+            </td>
+        }
+        else
+        {
+            <td>
+                @Html.DisplayName("Nữ")
+            </td>
+        }    
         <td>
             @Html.DisplayFor(modelItem => item.SDT)
         </td>

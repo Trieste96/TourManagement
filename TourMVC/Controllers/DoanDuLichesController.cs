@@ -10,107 +10,116 @@ using TourCommon.Model;
 
 namespace TourMVC.Controllers
 {
-    public class KhachDuLichesController : Controller
+    public class DoanDuLichesController : Controller
     {
         private TourDBEntities db = new TourDBEntities();
 
-        // GET: KhachDuLiches
+        // GET: DoanDuLiches
         public ActionResult Index()
         {
-            return View(db.KhachDuLiches.ToList());
+            var doanDuLiches = db.DoanDuLiches.Include(d => d.TinhTrangDoan).Include(d => d.Tour);
+            return View(doanDuLiches.ToList());
         }
 
-        // GET: KhachDuLiches/Details/5
+        // GET: DoanDuLiches/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            DoanDuLich doanDuLich = db.DoanDuLiches.Find(id);
+            if (doanDuLich == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            return View(doanDuLich);
         }
 
-        // GET: KhachDuLiches/Create
+        // GET: DoanDuLiches/Create
         public ActionResult Create()
         {
+            ViewBag.TinhTrangID = new SelectList(db.TinhTrangDoans, "ID", "TenTinhTrang");
+            ViewBag.TourID = new SelectList(db.Tours, "ID", "MaTour");
             return View();
         }
 
-        // POST: KhachDuLiches/Create
+        // POST: DoanDuLiches/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MaKhach,HoTen,CMND,DiaChi,GioiTinh,SDT")] KhachDuLich khachDuLich)
+        public ActionResult Create([Bind(Include = "ID,TenDoan,NgayKhoiHanh,NgayKetThuc,ChiTietND,GiaTour,MaDoan,TinhTrangID,TourID")] DoanDuLich doanDuLich)
         {
             if (ModelState.IsValid)
             {
-                db.KhachDuLiches.Add(khachDuLich);
+                db.DoanDuLiches.Add(doanDuLich);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(khachDuLich);
+            ViewBag.TinhTrangID = new SelectList(db.TinhTrangDoans, "ID", "TenTinhTrang", doanDuLich.TinhTrangID);
+            ViewBag.TourID = new SelectList(db.Tours, "ID", "MaTour", doanDuLich.TourID);
+            return View(doanDuLich);
         }
 
-        // GET: KhachDuLiches/Edit/5
+        // GET: DoanDuLiches/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            DoanDuLich doanDuLich = db.DoanDuLiches.Find(id);
+            if (doanDuLich == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            ViewBag.TinhTrangID = new SelectList(db.TinhTrangDoans, "ID", "TenTinhTrang", doanDuLich.TinhTrangID);
+            ViewBag.TourID = new SelectList(db.Tours, "ID", "MaTour", doanDuLich.TourID);
+            return View(doanDuLich);
         }
 
-        // POST: KhachDuLiches/Edit/5
+        // POST: DoanDuLiches/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MaKhach,HoTen,CMND,DiaChi,GioiTinh,SDT")] KhachDuLich khachDuLich)
+        public ActionResult Edit([Bind(Include = "ID,TenDoan,NgayKhoiHanh,NgayKetThuc,ChiTietND,GiaTour,MaDoan,TinhTrangID,TourID")] DoanDuLich doanDuLich)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(khachDuLich).State = EntityState.Modified;
+                db.Entry(doanDuLich).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(khachDuLich);
+            ViewBag.TinhTrangID = new SelectList(db.TinhTrangDoans, "ID", "TenTinhTrang", doanDuLich.TinhTrangID);
+            ViewBag.TourID = new SelectList(db.Tours, "ID", "MaTour", doanDuLich.TourID);
+            return View(doanDuLich);
         }
 
-        // GET: KhachDuLiches/Delete/5
+        // GET: DoanDuLiches/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            if (khachDuLich == null)
+            DoanDuLich doanDuLich = db.DoanDuLiches.Find(id);
+            if (doanDuLich == null)
             {
                 return HttpNotFound();
             }
-            return View(khachDuLich);
+            return View(doanDuLich);
         }
 
-        // POST: KhachDuLiches/Delete/5
+        // POST: DoanDuLiches/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KhachDuLich khachDuLich = db.KhachDuLiches.Find(id);
-            db.KhachDuLiches.Remove(khachDuLich);
+            DoanDuLich doanDuLich = db.DoanDuLiches.Find(id);
+            db.DoanDuLiches.Remove(doanDuLich);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

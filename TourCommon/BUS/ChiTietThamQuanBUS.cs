@@ -9,7 +9,7 @@ namespace TourCommon.BUS
 {
     public class ChiTietThamQuanBUS
     {
-        public bool SaveChiTietTour(DiaDiemTour diaDiemTour) // calling SaveStudentMethod for insert a new record  
+        public bool SaveChiTietThamQuan(DiaDiemTour diaDiemTour) // calling SaveStudentMethod for insert a new record  
         {
             bool result = false;
             using (TourDBEntities _entity = new TourDBEntities())
@@ -20,7 +20,7 @@ namespace TourCommon.BUS
             }
             return result;
         }
-        public bool UpdateChiTietTour(DiaDiemTour diaDiemTour) // UpdateStudentDetails method for update a existing Record  
+        public bool UpdateChiTietThamQuan(DiaDiemTour diaDiemTour) // UpdateStudentDetails method for update a existing Record  
         {
             bool result = false;
             using (TourDBEntities _entity = new TourDBEntities())
@@ -34,7 +34,7 @@ namespace TourCommon.BUS
             }
             return result;
         }
-        public bool DeleteChiTietTour(DiaDiemTour diaDiemTour) // DeleteStudentDetails method to delete record from table  
+        public bool DeleteChiTietThamQuan(DiaDiemTour diaDiemTour) // DeleteStudentDetails method to delete record from table  
         {
             bool result = false;
             using (TourDBEntities _entity = new TourDBEntities())
@@ -45,6 +45,14 @@ namespace TourCommon.BUS
                 result = true;
             }
             return result;
+        }
+        public DiaDiemTour SetValues(DateTime Ngay, int TourID, int DiaDiemID) //Setvalues method for binding field values to StudentInformation Model class
+        {
+            DiaDiemTour ddt = new DiaDiemTour();
+            ddt.Ngay = Ngay;
+            ddt.TourID = TourID;
+            ddt.DiaDiemID = DiaDiemID;
+            return ddt;
         }
     }
 }

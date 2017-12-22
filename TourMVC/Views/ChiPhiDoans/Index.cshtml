@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TourCommon.Model.ChiPhiDoan>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenChiPhi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChiPhiThucTe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoanDuLich.TenDoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiChiPhi.TenLoaiCP)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenChiPhi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChiPhiThucTe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GhiChu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DoanDuLich.TenDoan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiChiPhi.TenLoaiCP)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

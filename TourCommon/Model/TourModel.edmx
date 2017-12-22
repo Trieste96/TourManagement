@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TourDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TourDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiPhiDoan">
           <Key>
             <PropertyRef Name="ID" />
@@ -401,7 +401,8 @@
             <End Role="ThanhVienDoan" EntitySet="ThanhVienDoan" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TourDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -442,6 +443,17 @@
           <Property Name="TinhID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tinh" Relationship="Self.FK__DiaDiem__TinhID__36B12243" FromRole="DiaDiem" ToRole="Tinh" />
           <NavigationProperty Name="DiaDiemTours" Relationship="Self.FK__DiaDiemTo__DiaDi__398D8EEE" FromRole="DiaDiem" ToRole="DiaDiemTour" />
+        </EntityType>
+        <EntityType Name="DiaDiemTour">
+          <Key>
+            <PropertyRef Name="TourID" />
+            <PropertyRef Name="DiaDiemID" />
+          </Key>
+          <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TourID" Type="Int32" Nullable="false" />
+          <Property Name="DiaDiemID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DiaDiem" Relationship="Self.FK__DiaDiemTo__DiaDi__398D8EEE" FromRole="DiaDiemTour" ToRole="DiaDiem" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__DiaDiemTo__TourI__38996AB5" FromRole="DiaDiemTour" ToRole="Tour" />
         </EntityType>
         <EntityType Name="DoanDuLich">
           <Key>
@@ -548,9 +560,9 @@
           <Property Name="Gia" Type="Int32" Nullable="false" />
           <Property Name="LoaiHinhID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ChiPhiTours" Relationship="Self.FK__ChiPhiTou__TourI__4AB81AF0" FromRole="Tour" ToRole="ChiPhiTour" />
+          <NavigationProperty Name="DiaDiemTours" Relationship="Self.FK__DiaDiemTo__TourI__38996AB5" FromRole="Tour" ToRole="DiaDiemTour" />
           <NavigationProperty Name="DoanDuLiches" Relationship="Self.FK__DoanDuLic__TourI__3E52440B" FromRole="Tour" ToRole="DoanDuLich" />
           <NavigationProperty Name="LoaiHinh" Relationship="Self.FK__Tour__LoaiHinhID__33D4B598" FromRole="Tour" ToRole="LoaiHinh" />
-          <NavigationProperty Name="DiaDiemTours" Relationship="Self.FK__DiaDiemTo__TourI__38996AB5" FromRole="Tour" ToRole="DiaDiemTour" />
         </EntityType>
         <EntityType Name="ThanhVienDoan">
           <Key>
@@ -562,18 +574,6 @@
           <Property Name="KhachID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DoanDuLich" Relationship="Self.FK__ThanhVien__DoanI__4222D4EF" FromRole="ThanhVienDoan" ToRole="DoanDuLich" />
           <NavigationProperty Name="KhachDuLich" Relationship="Self.FK__ThanhVien__Khach__4316F928" FromRole="ThanhVienDoan" ToRole="KhachDuLich" />
-        </EntityType>
-        <EntityType Name="DiaDiemTour">
-          <Key>
-            <PropertyRef Name="Ngay" />
-            <PropertyRef Name="TourID" />
-            <PropertyRef Name="DiaDiemID" />
-          </Key>
-          <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TourID" Type="Int32" Nullable="false" />
-          <Property Name="DiaDiemID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DiaDiem" Relationship="Self.FK__DiaDiemTo__DiaDi__398D8EEE" FromRole="DiaDiemTour" ToRole="DiaDiem" />
-          <NavigationProperty Name="Tour" Relationship="Self.FK__DiaDiemTo__TourI__38996AB5" FromRole="DiaDiemTour" ToRole="Tour" />
         </EntityType>
         <Association Name="FK__ChiPhiDoa__DoanI__4E88ABD4">
           <End Role="DoanDuLich" Type="Self.DoanDuLich" Multiplicity="1" />
@@ -644,6 +644,18 @@
             </Principal>
             <Dependent Role="DiaDiemTour">
               <PropertyRef Name="DiaDiemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DiaDiemTo__TourI__38996AB5">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="DiaDiemTour" Type="Self.DiaDiemTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DiaDiemTour">
+              <PropertyRef Name="TourID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -743,22 +755,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DiaDiemTo__TourI__38996AB5">
-          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
-          <End Role="DiaDiemTour" Type="Self.DiaDiemTour" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tour">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DiaDiemTour">
-              <PropertyRef Name="TourID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="TourDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiPhiDoans" EntityType="Self.ChiPhiDoan" />
           <EntitySet Name="ChiPhiTours" EntityType="Self.ChiPhiTour" />
           <EntitySet Name="DiaDiems" EntityType="Self.DiaDiem" />
+          <EntitySet Name="DiaDiemTours" EntityType="Self.DiaDiemTour" />
           <EntitySet Name="DoanDuLiches" EntityType="Self.DoanDuLich" />
           <EntitySet Name="KhachDuLiches" EntityType="Self.KhachDuLich" />
           <EntitySet Name="LoaiChiPhis" EntityType="Self.LoaiChiPhi" />
@@ -770,7 +771,6 @@
           <EntitySet Name="TinhTrangDoans" EntityType="Self.TinhTrangDoan" />
           <EntitySet Name="Tours" EntityType="Self.Tour" />
           <EntitySet Name="ThanhVienDoans" EntityType="Self.ThanhVienDoan" />
-          <EntitySet Name="DiaDiemTours" EntityType="Self.DiaDiemTour" />
           <AssociationSet Name="FK__ChiPhiDoa__DoanI__4E88ABD4" Association="Self.FK__ChiPhiDoa__DoanI__4E88ABD4">
             <End Role="DoanDuLich" EntitySet="DoanDuLiches" />
             <End Role="ChiPhiDoan" EntitySet="ChiPhiDoans" />
@@ -793,6 +793,10 @@
           </AssociationSet>
           <AssociationSet Name="FK__DiaDiemTo__DiaDi__398D8EEE" Association="Self.FK__DiaDiemTo__DiaDi__398D8EEE">
             <End Role="DiaDiem" EntitySet="DiaDiems" />
+            <End Role="DiaDiemTour" EntitySet="DiaDiemTours" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DiaDiemTo__TourI__38996AB5" Association="Self.FK__DiaDiemTo__TourI__38996AB5">
+            <End Role="Tour" EntitySet="Tours" />
             <End Role="DiaDiemTour" EntitySet="DiaDiemTours" />
           </AssociationSet>
           <AssociationSet Name="FK__DoanDuLic__TinhT__3D5E1FD2" Association="Self.FK__DoanDuLic__TinhT__3D5E1FD2">
@@ -826,10 +830,6 @@
           <AssociationSet Name="FK__NhanVienD__Nhiem__47DBAE45" Association="Self.FK__NhanVienD__Nhiem__47DBAE45">
             <End Role="NhiemVu" EntitySet="NhiemVus" />
             <End Role="NhanVienDoan" EntitySet="NhanVienDoans" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DiaDiemTo__TourI__38996AB5" Association="Self.FK__DiaDiemTo__TourI__38996AB5">
-            <End Role="Tour" EntitySet="Tours" />
-            <End Role="DiaDiemTour" EntitySet="DiaDiemTours" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -870,6 +870,15 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TenDiaDiem" ColumnName="TenDiaDiem" />
                 <ScalarProperty Name="TinhID" ColumnName="TinhID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiaDiemTours">
+            <EntityTypeMapping TypeName="TourDBModel.DiaDiemTour">
+              <MappingFragment StoreEntitySet="DiaDiemTour">
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="DiaDiemID" ColumnName="DiaDiemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -979,15 +988,6 @@
                 <ScalarProperty Name="TyLeTraLai" ColumnName="TyLeTraLai" />
                 <ScalarProperty Name="DoanID" ColumnName="DoanID" />
                 <ScalarProperty Name="KhachID" ColumnName="KhachID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DiaDiemTours">
-            <EntityTypeMapping TypeName="TourDBModel.DiaDiemTour">
-              <MappingFragment StoreEntitySet="DiaDiemTour">
-                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
-                <ScalarProperty Name="TourID" ColumnName="TourID" />
-                <ScalarProperty Name="DiaDiemID" ColumnName="DiaDiemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
