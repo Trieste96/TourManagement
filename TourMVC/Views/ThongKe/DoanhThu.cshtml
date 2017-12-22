@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thống kê doanh thu theo tour</h2>
+
+@model IEnumerable<TourCommon.DAL.DoanhThuTour>
+
+@Html.Partial("~/Views/Shared/KhoangThoiGianPartial.cshtml", "DoanhThu");
+
+
+@{
+    if (Model != null)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Mã tour")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên tour")
+                </th>
+                <th>
+                    @Html.DisplayName("Doanh Thu")
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tour.MaTour)
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.tour.TenTour, "ChiPhiTheoDoan", item.tour.MaTour) 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DoanhThu)
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+}
+

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TourModel;
-using System.Data.Entity;
+using TourCommon.Model;
+using TourCommon.DAL;
 
 namespace TourMVC.Controllers
 {
     public class ThongKeController : Controller
     {
         TourDBEntities db = new TourDBEntities();
+        TourCommon.BUS.ThongKe bus = new TourCommon.BUS.ThongKe();
         // GET: ThongKe
         public ActionResult Index()
         {
@@ -27,7 +28,6 @@ namespace TourMVC.Controllers
         // GET: ThongKe/Create
         public ActionResult SoDoan()
         {
-            ViewBag.Title = "Thống kê số đoàn";
             return View();
         }
 
@@ -38,52 +38,55 @@ namespace TourMVC.Controllers
             // TODO: Add insert logic here
             ViewBag.TuNgay = TuNgayGio.ToString("dd-MM-yyyy");
             ViewBag.DenNgay = DenNgayGio.ToString("dd-MM-yyyy");
-            ViewBag.LoaiCP = db.LoaiChiPhis.ToList();
-            return View();
+            List<SoDoanTour> list = bus.xemSoDoan(TuNgayGio, DenNgayGio);
+            return View(list);
         }
-
-        // GET: ThongKe/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult DoanhThu()
         {
             return View();
         }
 
-        // POST: ThongKe/Edit/5
+        // POST: ThongKe/Create
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult DoanhThu(DateTime TuNgayGio, DateTime DenNgayGio)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            // TODO: Add insert logic here
+            ViewBag.TuNgay = TuNgayGio.ToString("dd-MM-yyyy");
+            ViewBag.DenNgay = DenNgayGio.ToString("dd-MM-yyyy");
+            List<DoanhThuTour> list = bus.xemDoanhThu(TuNgayGio, DenNgayGio);
+            return View(list);
         }
 
-        // GET: ThongKe/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult ChiPhiTheoTour()
         {
             return View();
         }
 
-        // POST: ThongKe/Delete/5
+        // POST: ThongKe/Create
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult ChiPhiTheoTour(DateTime TuNgayGio, DateTime DenNgayGio)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            // TODO: Add insert logic here
+            ViewBag.TuNgay = TuNgayGio.ToString("MM/dd/yyyy");
+            ViewBag.DenNgay = DenNgayGio.ToString("MM/dd/yyyy");
+            List<ChiPhiTour> list = bus.xemChiPhiTheoTour(TuNgayGio, DenNgayGio);
+            return View(list);
+        }
+        public ActionResult ChiPhiTheoDoan()
+        {
+            return View();
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+        // POST: ThongKe/Create
+        [HttpGet]
+        public ActionResult ChiPhiTheoDoan(string MaTour, DateTime tuNgay, DateTime denNgay)
+        {
+            // TODO: Add insert logic here
+            ViewBag.MaTour = MaTour;
+            ViewBag.TuNgay = tuNgay.ToString("MM/dd/yyyy");
+            ViewBag.DenNgay = denNgay.ToString("MM/dd/yyyy");
+            List<TongChiPhiDoan> list = bus.xemChiPhiTheoDoan(MaTour, tuNgay, denNgay);
+            return View(list);
         }
     }
 }

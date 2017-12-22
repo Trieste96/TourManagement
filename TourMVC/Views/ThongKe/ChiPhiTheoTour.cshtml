@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "ChiPhiTheoTour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi phí theo tour</h2>
+@model IEnumerable<TourCommon.Model.ChiPhiTour>
+@Html.Partial("~/Views/Shared/KhoangThoiGianPartial.cshtml", "ChiPhiTheoTour")
+
+@{
+    if (Model != null)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Mã tour")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên tour")
+                </th>
+                <th>
+                    @Html.DisplayName("Chi phí")
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tour.MaTour)
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.Tour.TenTour, "ChiPhiTheoDoan", new { MaTour = item.Tour.MaTour.TrimEnd(' '), tuNgay = ViewBag.TuNgay, denNgay = ViewBag.DenNgay })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChiPhiUocTinh)
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+}
+

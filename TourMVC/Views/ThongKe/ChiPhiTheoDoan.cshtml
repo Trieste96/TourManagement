@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "ChiPhiTheoDoan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi phí theo đoàn</h2>
+
+@model IEnumerable<TourCommon.DAL.TongChiPhiDoan>
+<h3>Tour @ViewBag.MaTour từ @ViewBag.TuNgay đến @ViewBag.DenNgay</h3>
+
+@{
+    if (Model != null)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Mã đoàn")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên đoàn")
+                </th>
+                <th>
+                    @Html.DisplayName("Chi phí")
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.doan.MaDoan)
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.doan.TenDoan, "CT_ChiPhiDoan", item.doan.MaDoan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongChiPhi)
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+}
+
