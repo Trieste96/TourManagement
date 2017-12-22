@@ -1,0 +1,24 @@
+﻿
+
+<form action=@String.Format("/ThongKe/{0}", @Model) method="post">
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2">Từ</label>
+            <div class="col-md-10">
+                @Html.TextBox("TuNgayGio", null, new { @class = "form-control datepicker", @type = "date" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Đến</label>
+            <div class="col-md-10">
+                @Html.TextBox("DenNgayGio", null, new { @class = "form-control datepicker", @type = "date" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Xem" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>

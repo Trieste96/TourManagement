@@ -328,6 +328,10 @@
     <Content Include="Views\NhanViens\Edit.cshtml" />
     <Content Include="Views\NhanViens\Index.cshtml" />
     <Content Include="Views\ThongKe\SoDoan.cshtml" />
+    <Content Include="Views\ThongKe\DoanhThu.cshtml" />
+    <Content Include="Views\Shared\KhoangThoiGianPartial.cshtml" />
+    <Content Include="Views\ThongKe\ChiPhiTheoTour.cshtml" />
+    <Content Include="Views\ThongKe\ChiPhiTheoDoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -59,10 +59,12 @@
     <Compile Include="DAL\ChiPhiTourThamQuan.cs" />
     <Compile Include="DAL\ChiTietThamQuan.cs" />
     <Compile Include="DAL\DiaDiemThamQuan.cs" />
+    <Compile Include="DAL\DoanhThuTour.cs" />
     <Compile Include="DAL\NhanVienLamViec.cs" />
     <Compile Include="DAL\SoDoanTour.cs" />
     <Compile Include="DAL\ThongTinTour.cs" />
     <Compile Include="DAL\TinhThamQuan.cs" />
+    <Compile Include="DAL\TongChiPhiDoan.cs" />
     <Compile Include="Model\ChiPhiDoan.cs">
       <DependentUpon>TourModel.tt</DependentUpon>
     </Compile>

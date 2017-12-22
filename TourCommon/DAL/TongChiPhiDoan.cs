@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TourCommon.DAL
 {
-    public class SoDoanTour
+    public class TongChiPhiDoan
     {
-        public Model.Tour tour { get; set; }
-        public int SoDoan { get; set; }
+        public Model.DoanDuLich doan;
+        public int TongChiPhi;
     }
 }
