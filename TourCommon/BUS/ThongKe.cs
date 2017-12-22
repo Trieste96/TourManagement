@@ -57,7 +57,7 @@ namespace TourCommon.BUS
             {
                 TongChiPhiDoan row = new TongChiPhiDoan();
                 row.doan = doan;
-                row.TongChiPhi = doan.ChiPhiDoans.Sum(cpd => cpd.Tong);
+                row.TongChiPhi = doan.ChiPhiDoans.Sum(cpd => cpd.ChiPhiThucTe);
                 list.Add(row);
             }
             return list;
